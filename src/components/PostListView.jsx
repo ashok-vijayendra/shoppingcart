@@ -1,6 +1,7 @@
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var PostStore = require('../stores/PostStore');
+var PostPreview = require('./PostPreview.jsx');
 
 var PostListView = React.createClass({
    
@@ -27,10 +28,7 @@ var PostListView = React.createClass({
    render: function(){
       var posts = this.state.posts.map(function(post){
         return (
-                <a key={post.id} href="#" className="single-post">
-                    <div className="post-title">{post.title}</div>
-                    <div className="author-details"><img src={post.author.photo} className="author-photo"/><span className="author-name">{post.author.name}</span></div>
-                </a>            
+                <PostPreview key={post.id} post={post} />           
             );
       });
       return (
