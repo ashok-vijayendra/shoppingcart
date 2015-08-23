@@ -27759,7 +27759,7 @@ var PostPreview = React.createClass({displayName: "PostPreview",
     render: function(){
       return (
             React.createElement("a", {href: "#", className: "single-post", onClick: this.loadPost}, 
-                React.createElement("div", {className: "post-title"}, " ", this.props.post.title), 
+                React.createElement("div", {className: "post-title"}, " ", React.createElement("div", {className: "numberCircle"}, " ", this.props.post.id, " "), " ", this.props.post.title), 
                 React.createElement("div", {className: "author-details"}, React.createElement("img", {src: this.props.post.author.photo, className: "author-photo"}), React.createElement("span", {className: "author-name"}, this.props.post.author.name))
             )  
        );
