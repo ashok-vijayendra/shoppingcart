@@ -27685,7 +27685,7 @@ var Header = React.createClass({displayName: "Header",
 	render: function(){
 	  return (
 	  	React.createElement("div", {className: "header", onClick: this.loadAllPosts}, 
-	       React.createElement("h1", null, " Sample Isomorphic React App")
+	       React.createElement("h1", null, " Javascript Frameworks and Libraries")
 	    )
 	  );
 	}

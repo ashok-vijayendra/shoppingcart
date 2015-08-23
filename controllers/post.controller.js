@@ -4,6 +4,9 @@ var config = require('../config');
 
 exports.showAllPosts = function(req,res,next){
    var obj = JSON.parse(fs.readFileSync('./static/posts.json', 'utf8'));
+   obj.map(function(post){
+   	  post.description = '';
+   })
    res.locals.data = {
        "PostStore" : {
            "posts" : obj
@@ -24,5 +27,8 @@ exports.loadSinglePostViaAjax = function(req,res){
 
 exports.loadPostsViaAjax = function(req,res){
     var obj = JSON.parse(fs.readFileSync('./static/posts.json', 'utf8'));
+    obj.map(function(post){
+   	  post.description = '';
+    })
     return res.json(obj);
 }

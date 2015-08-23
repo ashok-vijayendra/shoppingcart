@@ -15,8 +15,8 @@ body{
 }
 
 .body-container{
-    width: 900px;
-    background: #FFF;
+    width: 95%;
+    background: #F5F0F0;
     margin: auto;
     -webkit-box-shadow: 0 0 10px #aaa;
     -moz-box-shadow: 0 0 10px #aaa;
@@ -24,14 +24,14 @@ body{
 }
 
 .header{
-    background: #CFD8DC;
-    padding: 20px;
+    background: #C18E99;
+    padding: 50px;
+    text-align: center;
 }
 
 .header h1{
-    color: #455A64;
-    text-transform: uppercase;
-    font-size: 34px;
+    color: #FFFFFF;
+    font-size: 40px;
 }
 
 .header h1 a{

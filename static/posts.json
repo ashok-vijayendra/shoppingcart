@@ -36,7 +36,7 @@
     "description" : "Backbone.js is a JavaScript library with a RESTful JSON interface and is based on the model–view–presenter (MVP) application design paradigm. Backbone is known for being lightweight, as its only dependency is on one JavaScript library,[2] Underscore.js. It is designed for developing single-page web applications,[3] and for keeping various parts of web applications (e.g. multiple clients and the server) synchronized.[4] Backbone was created by Jeremy Ashkenas, who is also known for CoffeeScript.[5]",
     "author" : {
       "photo" : "/images/backbone.jpg",
-      "name" : "Syed"
+      "name" : "Backbone"
     }
   },
   { 
@@ -76,7 +76,7 @@
     "description" : "Backbone.js is a JavaScript library with a RESTful JSON interface and is based on the model–view–presenter (MVP) application design paradigm. Backbone is known for being lightweight, as its only dependency is on one JavaScript library,[2] Underscore.js. It is designed for developing single-page web applications,[3] and for keeping various parts of web applications (e.g. multiple clients and the server) synchronized.[4] Backbone was created by Jeremy Ashkenas, who is also known for CoffeeScript.[5]",
     "author" : {
       "photo" : "/images/backbone.jpg",
-      "name" : "Syed"
+      "name" : "Backbone"
     }
   }, 
   {
@@ -116,7 +116,7 @@
     "description" : "Backbone.js is a JavaScript library with a RESTful JSON interface and is based on the model–view–presenter (MVP) application design paradigm. Backbone is known for being lightweight, as its only dependency is on one JavaScript library,[2] Underscore.js. It is designed for developing single-page web applications,[3] and for keeping various parts of web applications (e.g. multiple clients and the server) synchronized.[4] Backbone was created by Jeremy Ashkenas, who is also known for CoffeeScript.[5]",
     "author" : {
       "photo" : "/images/backbone.jpg",
-      "name" : "Syed"
+      "name" : "Backbone"
     }
   }
 ]

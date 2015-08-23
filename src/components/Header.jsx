@@ -14,7 +14,7 @@ var Header = React.createClass({
 	render: function(){
 	  return (
 	  	<div className="header" onClick={this.loadAllPosts}>
-	       <h1> Sample Isomorphic React App</h1>
+	       <h1> Javascript Frameworks and Libraries</h1>
 	    </div>
 	  );
 	}
