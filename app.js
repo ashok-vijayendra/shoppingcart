@@ -37,7 +37,6 @@ app.use('/',posts);
 
 //middleware that is run at the last
 app.use(function(req,res){
-  console.log('TESTING');
   // initial the flux store state based on res.locals.data	
   alt.bootstrap(JSON.stringify(res.locals.data || {}));
   //Iso is a class. You instantiate it, 
@@ -56,7 +55,7 @@ app.use(function(req,res){
   });
 });
 
-//listen at 8080
-app.listen(8080, function () {
-    console.log('Listening on localhost:8080');
+//listen at 3011
+app.listen(3011, function () {
+    console.log('Listening on localhost:3011');
 });

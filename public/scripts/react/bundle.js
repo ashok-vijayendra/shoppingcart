@@ -13,11 +13,12 @@ window.onload = function(){
             React.render(node, container);
         });
     });
+    NProgress.configure({ minimum : 0.4 });
 }
 
 },{"./alt":229,"./routes.jsx":235,"iso":11,"react-router":37,"react/addons":52}],2:[function(require,module,exports){
 var config = {
-    baseUrl : "http://localhost:8080"
+    baseUrl : "http://isomorphic.com:3011"
 }
 
 module.exports = config;
@@ -16814,6 +16815,7 @@ var adler32 = require("./adler32");
 var ReactMarkupChecksum = {
   CHECKSUM_ATTR_NAME: 'data-react-checksum',
 
+  // ReactMarkupChecksum.js
   /**
    * @param {string} markup Markup string
    * @return {string} Markup string with checksum attribute attached
@@ -16826,6 +16828,8 @@ var ReactMarkupChecksum = {
     );
   },
 
+
+  // ReactMarkupChecksum.js
   /**
    * @param {string} markup to use
    * @param {DOMElement} element root React element
@@ -16839,6 +16843,8 @@ var ReactMarkupChecksum = {
     var markupChecksum = adler32(markup);
     return markupChecksum === existingChecksum;
   }
+
+
 };
 
 module.exports = ReactMarkupChecksum;
@@ -27685,7 +27691,7 @@ var Header = React.createClass({displayName: "Header",
 	render: function(){
 	  return (
 	  	React.createElement("div", {className: "header", onClick: this.loadAllPosts}, 
-	       React.createElement("h1", null, " Javascript Frameworks and Libraries")
+	       React.createElement("h1", null, " Hello Javascript Frameworks and Libraries")
 	    )
 	  );
 	}

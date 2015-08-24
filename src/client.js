@@ -12,4 +12,5 @@ window.onload = function(){
             React.render(node, container);
         });
     });
+    NProgress.configure({ minimum : 0.4 });
 }
