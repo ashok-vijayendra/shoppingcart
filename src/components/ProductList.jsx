@@ -1,8 +1,8 @@
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var ProductStore = require('../stores/ProductStore');
-var Product = require('./Product');
-
+var Product = require('./Product.jsx');
+ 
 var ProductList = React.createClass({
 
    getInitialState: function(){

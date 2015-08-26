@@ -14,7 +14,7 @@ class ProductStore{
    }
 
    updateProducts(products){
-     this.products = posts;
+     this.products = products;
    }
 }
 

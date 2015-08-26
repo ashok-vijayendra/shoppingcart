@@ -16,7 +16,7 @@ window.onload = function(){
     NProgress.configure({ minimum : 0.4 });
 }
 
-},{"./alt":230,"./routes.jsx":238,"iso":11,"react-router":37,"react/addons":52}],2:[function(require,module,exports){
+},{"./alt":229,"./routes.jsx":235,"iso":11,"react-router":37,"react/addons":52}],2:[function(require,module,exports){
 var config = {
     baseUrl : "http://isomorphic.com:3011"
 }
@@ -27608,62 +27608,13 @@ module.exports = function(arr, fn, initial){
 },{}],228:[function(require,module,exports){
 var alt = require('../alt');
 var request = require('superagent');
-var config = require('../../config');
-
-function PostActions(){"use strict";}
-
-    Object.defineProperty(PostActions.prototype,"loadAllPosts",{writable:true,configurable:true,value:function(cb){"use strict"; 
-        var self = this;
-        NProgress.start();
-        request.get(config.baseUrl+'/ajax/posts',function(err,response){
-            alert('in listing');
-            self.actions.updatePosts(response.body);
-            setTimeout(function(){
-                NProgress.done();
-            },500);
-            if(cb){
-                cb();
-            }
-        });
-    }});
-
-    Object.defineProperty(PostActions.prototype,"loadSinglePost",{writable:true,configurable:true,value:function(id,cb){"use strict";
-        var self = this;
-        NProgress.start();
-        request.get(config.baseUrl+'/ajax/post/'+id,function(err,response){
-            self.actions.updateCurrentPost(response.body);
-            setTimeout(function(){
-                NProgress.done();
-            },500);
-            if(cb){
-                cb();
-            }
-        });
-    }});
-
-    Object.defineProperty(PostActions.prototype,"updatePosts",{writable:true,configurable:true,value:function(posts){"use strict";
-        this.dispatch(posts);
-    }});
-
-    Object.defineProperty(PostActions.prototype,"updateCurrentPost",{writable:true,configurable:true,value:function(post){"use strict";
-        this.dispatch(post);
-    }});
-
-
-module.exports = alt.createActions(PostActions);
-
-},{"../../config":2,"../alt":230,"superagent":225}],229:[function(require,module,exports){
-var alt = require('../alt');
-var request = require('superagent');
-var config = require('../../config');
+var config = require('../../config'); 
 
 function ProductActions(){"use strict";}
-
-    Object.defineProperty(ProductActions.prototype,"loadAllProducts",{writable:true,configurable:true,value:function(cb){"use strict"; 
+    Object.defineProperty(ProductActions.prototype,"loadAllProducts",{writable:true,configurable:true,value:function(cb){"use strict";
         var self = this;
         NProgress.start();
         request.get(config.baseUrl+'/ajax/products',function(err,response){
-            alert('in listing');
             self.actions.updateProducts(response.body);
             setTimeout(function(){
                 NProgress.done();
@@ -27681,12 +27632,12 @@ function ProductActions(){"use strict";}
 
 module.exports = alt.createActions(ProductActions);
 
-},{"../../config":2,"../alt":230,"superagent":225}],230:[function(require,module,exports){
+},{"../../config":2,"../alt":229,"superagent":225}],229:[function(require,module,exports){
 var Alt = require('alt');
 var alt = new Alt();
 module.exports = alt;
 
-},{"alt":3}],231:[function(require,module,exports){
+},{"alt":3}],230:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var Header = require('./Header.jsx');
@@ -27707,7 +27658,7 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"./Footer.jsx":232,"./Header.jsx":233,"./ProductList.jsx":236,"react-router":37,"react/addons":52}],232:[function(require,module,exports){
+},{"./Footer.jsx":231,"./Header.jsx":232,"./ProductList.jsx":234,"react-router":37,"react/addons":52}],231:[function(require,module,exports){
 var React = require('react/addons');
 var Footer = React.createClass({displayName: "Footer",
 	render: function(){
@@ -27738,9 +27689,9 @@ var Footer = React.createClass({displayName: "Footer",
 
 module.exports = Footer;
 
-},{"react/addons":52}],233:[function(require,module,exports){
+},{"react/addons":52}],232:[function(require,module,exports){
 var React = require('react/addons');
-var PostActions = require('../actions/PostActions');
+var ProductActions = require('../actions/ProductActions');
 var Header = React.createClass({displayName: "Header",
     contextTypes: {
         router: React.PropTypes.func
@@ -27748,118 +27699,70 @@ var Header = React.createClass({displayName: "Header",
     loadAllPosts: function(e){
         e.preventDefault();
         var self = this;
-        PostActions.loadAllPosts(function(){
-        	self.context.router.transitionTo('postListView');
+        ProductActions.loadAllProducts(function(){
+        	self.context.router.transitionTo('productList');
         });
     },
-	render: function(){
-	  return (
-	  	React.createElement("header", {className: "header", onClick: this.loadAllPosts}, 
-            React.createElement("h1", null, 
-              React.createElement("a", {href: "http://localhost:3010"}, 
-                React.createElement("img", {src: "/images/React.js_logo.png", alt: "Shopping Cart", className: "company-logo"})
-              )
-            ), 
-            React.createElement("nav", null, 
-              React.createElement("ul", null, 
-                React.createElement("li", null, 
-                   React.createElement("a", {href: "/aboutus"}, " About Us")
-                ), 
-                React.createElement("li", null, 
-                   React.createElement("a", {href: "/contactus"}, " Contact Us")
-                ), 
-                React.createElement("li", null, 
-                   React.createElement("a", {href: "/careers"}, " Careers")
+  	render: function(){
+  	  return (
+  	  	React.createElement("header", {className: "header", onClick: this.loadAllPosts}, 
+              React.createElement("h1", null, 
+                React.createElement("a", {href: "http://localhost:3010"}, 
+                  React.createElement("img", {src: "/images/React.js_logo.png", alt: "Shopping Cart", className: "company-logo"})
+                )
+              ), 
+              React.createElement("nav", null, 
+                React.createElement("ul", null, 
+                  React.createElement("li", null, 
+                     React.createElement("a", {href: "/aboutus"}, " About Us")
+                  ), 
+                  React.createElement("li", null, 
+                     React.createElement("a", {href: "/contactus"}, " Contact Us")
+                  ), 
+                  React.createElement("li", null, 
+                     React.createElement("a", {href: "/careers"}, " Careers")
+                  )
                 )
               )
-            )
-	    )
-	  );
-	}
+  	    )
+  	  );
+  	}
 });
 
 module.exports = Header;
 
-},{"../actions/PostActions":228,"react/addons":52}],234:[function(require,module,exports){
+},{"../actions/ProductActions":228,"react/addons":52}],233:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
-var PostStore = require('../stores/PostStore');
-var PostPreview = require('./PostPreview.jsx');
+var ProductActions = require('../actions/ProductActions');
+var Product= React.createClass({displayName: "Product",
 
-var PostListView = React.createClass({displayName: "PostListView",
-   
-   contextTypes: {
-      router: React.PropTypes.func
+   addToCart: function(e){
+
    },
-
-   getInitialState: function(){
-      return PostStore.getState();
-   },
-
-   componentDidMount: function(){
-      PostStore.listen(this.onChange);
-   },
-
-   componentWillUnmount: function(){
-      PostStore.unlisten(this.onChange);
-   },
-
-   onChange: function(state){
-      this.setState(state);
-   },
-
-   render: function(){
-      var posts = this.state.posts.map(function(post){
-        return (
-                React.createElement(PostPreview, {key: post.id, post: post})           
-            );
-      });
+   render: function(){ 
       return (
-            React.createElement("div", null, 
-                posts
-            )
+        React.createElement("div", {className: "flux-product"}, 
+          React.createElement("img", {src: '/images/' + this.props.product.image}), 
+          React.createElement("div", {className: "flux-product-detail"}, 
+            React.createElement("h1", {className: "name"}, this.props.product.name), 
+            React.createElement("p", {className: "description"}, this.props.product.description), 
+            React.createElement("p", {className: "price"}, "Price: $", this.props.product.price), 
+            React.createElement("button", {type: "button", onClick: this.addToCart}, " Add to Cart ")
+          )
+        )
        );
    }
-
 });
 
-module.exports = PostListView;
+module.exports = Product;
 
-},{"../stores/PostStore":239,"./PostPreview.jsx":235,"react-router":37,"react/addons":52}],235:[function(require,module,exports){
-var React = require('react/addons');
-var PostActions = require('../actions/PostActions');
-
-var PostPreview = React.createClass({displayName: "PostPreview",
-
-    contextTypes: {
-        router: React.PropTypes.func
-    },
-
-    loadPost: function(e){
-        e.preventDefault();
-        var self = this;
-        PostActions.loadSinglePost(this.props.post.id,function(){
-        	self.context.router.transitionTo('/post/'+self.props.post.id+'/'+self.props.post.slug);
-        })
-    },
-
-    render: function(){
-      return (
-            React.createElement("a", {href: "#", className: "single-post", onClick: this.loadPost}, 
-                React.createElement("div", {className: "post-title"}, " ", React.createElement("div", {className: "numberCircle"}, " ", this.props.post.id, " "), " ", this.props.post.title), 
-                React.createElement("div", {className: "author-details"}, React.createElement("img", {src: this.props.post.author.photo, className: "author-photo"}), React.createElement("span", {className: "author-name"}, this.props.post.author.name))
-            )  
-       );
-    }
-});
-
-module.exports = PostPreview;
-
-},{"../actions/PostActions":228,"react/addons":52}],236:[function(require,module,exports){
+},{"../actions/ProductActions":228,"react-router":37,"react/addons":52}],234:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var ProductStore = require('../stores/ProductStore');
-
+var Product = require('./Product.jsx');
+ 
 var ProductList = React.createClass({displayName: "ProductList",
 
    getInitialState: function(){
@@ -27895,98 +27798,22 @@ var ProductList = React.createClass({displayName: "ProductList",
 
 module.exports = ProductList;
 
-},{"../stores/ProductStore":240,"react-router":37,"react/addons":52}],237:[function(require,module,exports){
-var React = require('react/addons');
-var RouteHandler = require('react-router').RouteHandler;
-var PostStore = require('../stores/PostStore');
-
-var SinglePostView = React.createClass({displayName: "SinglePostView",
-   
-   contextTypes: {
-      router: React.PropTypes.func
-   },
-
-   getInitialState: function(){
-      return PostStore.getState();
-   },
-
-   componentDidMount: function(){
-      PostStore.listen(this.onChange);
-   },
-
-   componentWillUnmount: function(){
-      PostStore.unlisten(this.onChange);
-   },
-
-   onChange: function(state){
-      this.setState(state);
-   },
-
-   render: function(){
-      return (
-            React.createElement("div", {className: "full-post"}, 
-                React.createElement("h1", {className: "post-title"}, this.state.currentPost.title), 
-                React.createElement("div", {className: "author-details"}, 
-                    React.createElement("img", {src: this.state.currentPost.author.photo, className: "author-photo"}), 
-                    React.createElement("span", {className: "author-name"}, this.state.currentPost.author.name)
-                ), 
-                React.createElement("div", {className: "post-content"}, 
-                    this.state.currentPost.description
-                )
-            )            
-       );
-   }
-
-});
-
-module.exports = SinglePostView;
-
-},{"../stores/PostStore":239,"react-router":37,"react/addons":52}],238:[function(require,module,exports){
+},{"../stores/ProductStore":236,"./Product.jsx":233,"react-router":37,"react/addons":52}],235:[function(require,module,exports){
 var React = require('react/addons');
 var Route = require('react-router').Route;
 var App = require('./components/App.jsx');
-var PostListView = require('./components/PostListView.jsx');
-var SinglePostView = require('./components/SinglePostView.jsx');
-
+var ProductList = require('./components/ProductList.jsx');
+//var CheckoutView = require('./components/CheckoutView.jsx');
+//<Route name="checkoutView" path="/checkout" handler={CheckoutView}/>
 var routes = (
 	React.createElement(Route, {name: "home", path: "/", handler: App}, 
-	   React.createElement(Route, {name: "postListView", path: "/", handler: PostListView}), 
-       React.createElement(Route, {name: "singlePostView", path: "/post/:id/:slug", handler: SinglePostView})
+	   React.createElement(Route, {name: "productList", path: "/", handler: ProductList})
 	)
 );
 
 module.exports = routes;
 
-},{"./components/App.jsx":231,"./components/PostListView.jsx":234,"./components/SinglePostView.jsx":237,"react-router":37,"react/addons":52}],239:[function(require,module,exports){
-var alt = require('../alt');
-var PostActions = require('../actions/PostActions');
-
-
-
-   function PostStore(){"use strict";
-     var self = this;
-     this.bindListeners({
-      updatePosts: PostActions.UPDATE_POSTS,
-      updateCurrentPost: PostActions.UPDATE_CURRENT_POST
-     });  
-     this.on('init',function(){
-       self.posts = [];
-       self.currentPost = null;
-     })
-   }
-
-   Object.defineProperty(PostStore.prototype,"updatePosts",{writable:true,configurable:true,value:function(posts){"use strict";
-     this.posts = posts;
-   }});
-
-   Object.defineProperty(PostStore.prototype,"updateCurrentPost",{writable:true,configurable:true,value:function(post){"use strict";
-     this.currentPost = post;
-   }}); 
-
-
-module.exports = alt.createStore(PostStore, 'PostStore');
-
-},{"../actions/PostActions":228,"../alt":230}],240:[function(require,module,exports){
+},{"./components/App.jsx":230,"./components/ProductList.jsx":234,"react-router":37,"react/addons":52}],236:[function(require,module,exports){
 var alt = require('../alt');
 var ProductActions = require('../actions/ProductActions');
 
@@ -28003,10 +27830,10 @@ var ProductActions = require('../actions/ProductActions');
    }
 
    Object.defineProperty(ProductStore.prototype,"updateProducts",{writable:true,configurable:true,value:function(products){"use strict";
-     this.products = posts;
+     this.products = products;
    }});
 
 
 module.exports = alt.createStore(ProductStore, 'ProductStore');
 
-},{"../actions/ProductActions":229,"../alt":230}]},{},[1]);
+},{"../actions/ProductActions":228,"../alt":229}]},{},[1]);
