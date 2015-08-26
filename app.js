@@ -1,6 +1,6 @@
 var React = require('react/addons');
 //server side routes for initial render
-var posts = require('./routes/shopping.cart.routes');
+var serverRoutes = require('./routes/shopping.cart.routes');
 //flux implementation
 var alt = require('./src/alt');
 var Iso = require('iso');
@@ -30,9 +30,10 @@ app.use(bodyParser.json({limit : '50mb'}));
 // console.log("Cookies: ", req.cookies)
 // })
 //use Routes here
-app.use('/',posts);
+app.use('/',serverRoutes);
 //middleware that is run at the last
 app.use(function(req,res){
+  console.log(res.locals.data);
   // initial the flux store state based on res.locals.data	
   alt.bootstrap(JSON.stringify(res.locals.data || {}));
   //Iso is a class. You instantiate it, 

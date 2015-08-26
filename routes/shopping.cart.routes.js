@@ -1,10 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var PostController = require('../controllers/post.controller')
+var PostController = require('../controllers/product.controller')
 
 //Define routes
-router.route('/').get(PostController.showAllPosts);
-router.route('/ajax/post/:id').get(PostController.loadSinglePostViaAjax);
-router.route('/ajax/posts').get(PostController.loadPostsViaAjax);
+router.route('/').get(PostController.allProducts);
+router.route('/ajax/products').get(PostController.loadProductsViaAjax);
 
 module.exports = router;

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "iPhone",
+    "image": "iphone.jpg",
+    "description": "iPhoneis a line of smartphones designed and marketed by Apple Inc. They run Apples iOS mobile operating system. The first generation iPhone was released on June 29, 2007; the most recent iPhone models are the iPhone 6 and iPhone 6 Plus, which were unveiled at a special event on September 9, 2014.The user interface is built around the devices multi-touch screen, including a virtual keyboard. The iPhone has Wi-Fi and can connect to cellular networks. An iPhone can shoot video (though this was not a standard feature until the iPhone 3GS), take photos, play music, send and receive email, browse the web, send texts, GPS navigation, record notes, do mathematical calculations, and receive visual voicemail.[15] Other functions—video games, reference works, social networking, etc.—can be enabled by downloading application programs (‘apps’); as of October 2013, the App Store offered more than one million apps by Apple and third parties[16] and is ranked as the worlds second largest mobile software distribution network of its kind (by number of currently available applications).",
+    "price": 699
+  },
+  {
+    "id": 2,
+    "name": "Samsung",
+    "image": "samsung.jpg",
+    "description": "iPhoneis a line of smartphones designed and marketed by Apple Inc. They run Apples iOS mobile operating system. The first generation iPhone was released on June 29, 2007; the most recent iPhone models are the iPhone 6 and iPhone 6 Plus, which were unveiled at a special event on September 9, 2014.The user interface is built around the devices multi-touch screen, including a virtual keyboard. The iPhone has Wi-Fi and can connect to cellular networks. An iPhone can shoot video (though this was not a standard feature until the iPhone 3GS), take photos, play music, send and receive email, browse the web, send texts, GPS navigation, record notes, do mathematical calculations, and receive visual voicemail.[15] Other functions—video games, reference works, social networking, etc.—can be enabled by downloading application programs (‘apps’); as of October 2013, the App Store offered more than one million apps by Apple and third parties[16] and is ranked as the worlds second largest mobile software distribution network of its kind (by number of currently available applications).",
+    "price": 499
+  },
+  {
+    "id": 3,
+    "name": "HTC",
+    "image": "htc.jpg",
+    "description": "iPhoneis a line of smartphones designed and marketed by Apple Inc. They run Apples iOS mobile operating system. The first generation iPhone was released on June 29, 2007; the most recent iPhone models are the iPhone 6 and iPhone 6 Plus, which were unveiled at a special event on September 9, 2014.The user interface is built around the devices multi-touch screen, including a virtual keyboard. The iPhone has Wi-Fi and can connect to cellular networks. An iPhone can shoot video (though this was not a standard feature until the iPhone 3GS), take photos, play music, send and receive email, browse the web, send texts, GPS navigation, record notes, do mathematical calculations, and receive visual voicemail.[15] Other functions—video games, reference works, social networking, etc.—can be enabled by downloading application programs (‘apps’); as of October 2013, the App Store offered more than one million apps by Apple and third parties[16] and is ranked as the worlds second largest mobile software distribution network of its kind (by number of currently available applications).",
+    "price": 399
+  }  
+]
