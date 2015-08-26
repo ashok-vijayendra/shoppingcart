@@ -1,14 +1,14 @@
-var routes = require('./routes/post.routes');
 var React = require('react/addons');
+//server side routes for initial render
+var posts = require('./routes/shopping.cart.routes');
+//flux implementation
 var alt = require('./src/alt');
 var Iso = require('iso');
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
 var Router = require('react-router');
 var app = express();
-var posts = require('./routes/post.routes');
 var routes = require('./src/routes.jsx')
 // where views are located
 app.set('views', __dirname+'/views');
@@ -29,12 +29,8 @@ app.use(bodyParser.json({limit : '50mb'}));
 // app.get('/', function(req, res) {
 // console.log("Cookies: ", req.cookies)
 // })
-app.use(cookieParser());
-
-
 //use Routes here
 app.use('/',posts);
-
 //middleware that is run at the last
 app.use(function(req,res){
   // initial the flux store state based on res.locals.data	

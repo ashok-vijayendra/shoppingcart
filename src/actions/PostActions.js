@@ -8,6 +8,7 @@ class PostActions {
         var self = this;
         NProgress.start();
         request.get(config.baseUrl+'/ajax/posts',function(err,response){
+            alert('in listing');
             self.actions.updatePosts(response.body);
             setTimeout(function(){
                 NProgress.done();

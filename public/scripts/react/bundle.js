@@ -16,7 +16,7 @@ window.onload = function(){
     NProgress.configure({ minimum : 0.4 });
 }
 
-},{"./alt":229,"./routes.jsx":235,"iso":11,"react-router":37,"react/addons":52}],2:[function(require,module,exports){
+},{"./alt":229,"./routes.jsx":236,"iso":11,"react-router":37,"react/addons":52}],2:[function(require,module,exports){
 var config = {
     baseUrl : "http://isomorphic.com:3011"
 }
@@ -27616,6 +27616,7 @@ function PostActions(){"use strict";}
         var self = this;
         NProgress.start();
         request.get(config.baseUrl+'/ajax/posts',function(err,response){
+            alert('in listing');
             self.actions.updatePosts(response.body);
             setTimeout(function(){
                 NProgress.done();
@@ -27660,13 +27661,15 @@ module.exports = alt;
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var Header = require('./Header.jsx');
+var Footer = require('./Footer.jsx');
 
 var App = React.createClass({displayName: "App",
 	render: function(){
 		return (
             React.createElement("div", {className: "body-container"}, 
               React.createElement(Header, null), 
-              React.createElement(RouteHandler, null)
+              React.createElement(RouteHandler, null), 
+              React.createElement(Footer, null)
             )
 			);
 	}
@@ -27674,7 +27677,38 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"./Header.jsx":231,"react-router":37,"react/addons":52}],231:[function(require,module,exports){
+},{"./Footer.jsx":231,"./Header.jsx":232,"react-router":37,"react/addons":52}],231:[function(require,module,exports){
+var React = require('react/addons');
+var Footer = React.createClass({displayName: "Footer",
+	render: function(){
+	  return (
+	  	React.createElement("footer", null, 
+	       React.createElement("ul", {className: "outer-wrapper"}, 
+             React.createElement("li", null, 
+                "Connect with us", 
+                React.createElement("ul", null, 
+                   React.createElement("li", null, " Facebook "), 
+                   React.createElement("li", null, " Twitter "), 
+                   React.createElement("li", null, " LinkedIn ")
+                )
+             ), 
+             React.createElement("li", null, 
+                "More", 
+                React.createElement("ul", null, 
+                   React.createElement("li", null, " Photos "), 
+                   React.createElement("li", null, " Videos "), 
+                   React.createElement("li", null, " Blogs ")
+                )
+             )
+           )
+	    )
+	  );
+	}
+});
+
+module.exports = Footer;
+
+},{"react/addons":52}],232:[function(require,module,exports){
 var React = require('react/addons');
 var PostActions = require('../actions/PostActions');
 var Header = React.createClass({displayName: "Header",
@@ -27690,8 +27724,25 @@ var Header = React.createClass({displayName: "Header",
     },
 	render: function(){
 	  return (
-	  	React.createElement("div", {className: "header", onClick: this.loadAllPosts}, 
-	       React.createElement("h1", null, " Hello Javascript Frameworks and Libraries")
+	  	React.createElement("header", {className: "header", onClick: this.loadAllPosts}, 
+            React.createElement("h1", null, 
+              React.createElement("a", {href: "http://localhost:3010"}, 
+                React.createElement("img", {src: "/images/React.js_logo.png", alt: "Shopping Cart", className: "company-logo"})
+              )
+            ), 
+            React.createElement("nav", null, 
+              React.createElement("ul", null, 
+                React.createElement("li", null, 
+                   React.createElement("a", {href: "/aboutus"}, " About Us")
+                ), 
+                React.createElement("li", null, 
+                   React.createElement("a", {href: "/contactus"}, " Contact Us")
+                ), 
+                React.createElement("li", null, 
+                   React.createElement("a", {href: "/careers"}, " Careers")
+                )
+              )
+            )
 	    )
 	  );
 	}
@@ -27699,7 +27750,7 @@ var Header = React.createClass({displayName: "Header",
 
 module.exports = Header;
 
-},{"../actions/PostActions":228,"react/addons":52}],232:[function(require,module,exports){
+},{"../actions/PostActions":228,"react/addons":52}],233:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var PostStore = require('../stores/PostStore');
@@ -27744,7 +27795,7 @@ var PostListView = React.createClass({displayName: "PostListView",
 
 module.exports = PostListView;
 
-},{"../stores/PostStore":236,"./PostPreview.jsx":233,"react-router":37,"react/addons":52}],233:[function(require,module,exports){
+},{"../stores/PostStore":237,"./PostPreview.jsx":234,"react-router":37,"react/addons":52}],234:[function(require,module,exports){
 var React = require('react/addons');
 var PostActions = require('../actions/PostActions');
 
@@ -27774,7 +27825,7 @@ var PostPreview = React.createClass({displayName: "PostPreview",
 
 module.exports = PostPreview;
 
-},{"../actions/PostActions":228,"react/addons":52}],234:[function(require,module,exports){
+},{"../actions/PostActions":228,"react/addons":52}],235:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var PostStore = require('../stores/PostStore');
@@ -27820,7 +27871,7 @@ var SinglePostView = React.createClass({displayName: "SinglePostView",
 
 module.exports = SinglePostView;
 
-},{"../stores/PostStore":236,"react-router":37,"react/addons":52}],235:[function(require,module,exports){
+},{"../stores/PostStore":237,"react-router":37,"react/addons":52}],236:[function(require,module,exports){
 var React = require('react/addons');
 var Route = require('react-router').Route;
 var App = require('./components/App.jsx');
@@ -27836,7 +27887,7 @@ var routes = (
 
 module.exports = routes;
 
-},{"./components/App.jsx":230,"./components/PostListView.jsx":232,"./components/SinglePostView.jsx":234,"react-router":37,"react/addons":52}],236:[function(require,module,exports){
+},{"./components/App.jsx":230,"./components/PostListView.jsx":233,"./components/SinglePostView.jsx":235,"react-router":37,"react/addons":52}],237:[function(require,module,exports){
 var alt = require('../alt');
 var PostActions = require('../actions/PostActions');
 

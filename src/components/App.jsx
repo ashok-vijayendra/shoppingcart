@@ -1,6 +1,7 @@
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var Header = require('./Header.jsx');
+var Footer = require('./Footer.jsx');
 
 var App = React.createClass({
 	render: function(){
@@ -8,6 +9,7 @@ var App = React.createClass({
             <div className="body-container">
               <Header />
               <RouteHandler />
+              <Footer />
             </div>
 			);
 	}

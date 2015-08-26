@@ -1,8 +1,41 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,300);
+html { 
+     font-size: 62.5%; 
+}
 
-*{
-    margin: 0;
-    padding: 0;
+body { 
+    font-size: 1.4rem; /* =14px */
+} 
+
+h1   { 
+    font-size: 2.4rem; /* =24px */ 
+} 
+
+header, footer {
+    overflow: auto;
+    padding: 1rem;
+    background: #C18E99;
+    text-align: center;    
+}
+
+.company-logo {
+    float: left;
+    width: 10rem;
+}
+
+header ul li {
+    display: inline-block;
+    padding: 1rem;
+    list-style: none;
+}
+
+
+footer .outer-wrapper li {
+    padding: 1rem;
+    list-style: none;
+}
+
+footer .outer-wrapper > li{
+    display: inline-block;
 }
 
 html{
@@ -25,7 +58,6 @@ body{
 
 .header{
     background: #C18E99;
-    padding: 50px;
     text-align: center;
 }
 

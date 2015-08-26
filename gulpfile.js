@@ -4,7 +4,8 @@ var gulp = require('gulp'),
     buffer = require('vinyl-buffer'),
     reactify = require('reactify'),
     package = require('./package.json'),
-    nodemon = require('nodemon');
+    nodemon = require('nodemon')
+    livereload = require('gulp-livereload');;
 
 
 gulp.task('bundle', function() {
@@ -12,7 +13,8 @@ gulp.task('bundle', function() {
         .transform('reactify', {stripTypes: true, es6: true})
         .bundle()
         .pipe(source(package.dest.app))
-        .pipe(gulp.dest(package.dest.dist));
+        .pipe(gulp.dest(package.dest.dist))
+        .pipe(livereload());
 });
 
 gulp.task('watch', function () {
