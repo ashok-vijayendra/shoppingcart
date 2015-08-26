@@ -3,7 +3,8 @@ var request = require('superagent');
 var config = require('../../config');
 
 class CartActions {
-    addtoCart(product){
+
+    addToCart(product){
         this.dispatch(product);
     }
 
@@ -12,4 +13,4 @@ class CartActions {
     }
 }
 
-module.exports = alt.createActions(ProductActions);
+module.exports = alt.createActions(CartActions);

@@ -1,10 +1,10 @@
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
-var ProductActions = require('../actions/ProductActions');
+var CartActions = require('../actions/CartActions');
 var Product= React.createClass({
 
    addToCart: function(e){
-
+     CartActions.addToCart(this.props.product);
    },
    render: function(){ 
       return (
