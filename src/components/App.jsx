@@ -10,7 +10,7 @@ var App = React.createClass({
 		return (
             <div className="body-container">
               <Header />
-              <ProductList />
+              <RouteHandler />
               <Cart />
               <Footer />
             </div>

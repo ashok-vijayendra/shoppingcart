@@ -27668,7 +27668,7 @@ var App = React.createClass({displayName: "App",
 		return (
             React.createElement("div", {className: "body-container"}, 
               React.createElement(Header, null), 
-              React.createElement(ProductList, null), 
+              React.createElement(RouteHandler, null), 
               React.createElement(Cart, null), 
               React.createElement(Footer, null)
             )
@@ -27684,6 +27684,10 @@ var RouteHandler = require('react-router').RouteHandler;
 var CartStore = require('../stores/CartStore');
  
 var Cart = React.createClass({displayName: "Cart",
+
+   contextTypes: {
+        router: React.PropTypes.func
+   },
 
    getInitialState: function(){
       return CartStore.getState();
@@ -27701,10 +27705,15 @@ var Cart = React.createClass({displayName: "Cart",
       this.setState(state);
    },
 
+   checkOut: function(e){
+        e.preventDefault();
+        this.context.router.transitionTo('/checkout');
+   },
+
    render: function(){
       return (
           React.createElement("div", {className: "flux-cart"}, 
-            React.createElement("button", {type: "button", className: "view-cart", disabled: this.state.items.length > 0 ? "" : "disabled"}, "View Cart (", this.state.quantity, ")")
+            React.createElement("button", {type: "button", className: "view-cart", disabled: (this.state.quantity > 0) ? "" : "disabled", onClick: this.checkOut}, " Cart (", this.state.quantity, ")")
           )
        );
    }
@@ -27790,20 +27799,23 @@ module.exports = Header;
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var CartActions = require('../actions/CartActions');
-var Product= React.createClass({displayName: "Product",
-
-   addToCart: function(e){
-     CartActions.addToCart(this.props.product);
+var Product= React.createClass({displayName: "Product", 
+   action: function(e){
+     this.props.action(this.props.product)
    },
    render: function(){ 
+      var desc = ( this.props.cardDetail ) ? 
+                 React.createElement("p", {className: "short-description"}, this.props.product.shortdescription) :
+                 React.createElement("p", {className: "description"}, this.props.product.description) ;
       return (
         React.createElement("div", {className: "flux-product"}, 
           React.createElement("img", {src: '/images/' + this.props.product.image}), 
           React.createElement("div", {className: "flux-product-detail"}, 
             React.createElement("h1", {className: "name"}, this.props.product.name), 
+            desc, 
             React.createElement("p", {className: "description"}, this.props.product.description), 
             React.createElement("p", {className: "price"}, "Price: $", this.props.product.price), 
-            React.createElement("button", {type: "button", onClick: this.addToCart}, " Add to Cart ")
+            React.createElement("button", {type: "button", onClick: this.action}, " ", this.props.actionLabel, " ")
           )
         )
        );
@@ -27817,7 +27829,8 @@ var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var ProductStore = require('../stores/ProductStore');
 var Product = require('./Product.jsx');
- 
+var CartActions = require('../actions/CartActions');
+
 var ProductList = React.createClass({displayName: "ProductList",
 
    getInitialState: function(){
@@ -27836,15 +27849,20 @@ var ProductList = React.createClass({displayName: "ProductList",
       this.setState(state);
    },
 
-   render: function(){
-      var products = this.state.products.map(function(product){
+   addToCart: function(product){
+     CartActions.addToCart(product); 
+   },
+
+   eachProduct: function(product,i){
         return (
-                React.createElement(Product, {key: product.id, product: product})           
+              React.createElement(Product, {key: product.id, product: product, action: this.addToCart, actionLabel: "ADD To Cart"}) 
             );
-      });
+    },
+
+   render: function(){ 
       return (
             React.createElement("div", null, 
-                products
+                this.state.products.map(this.eachProduct)
             )
        );
    }
@@ -27853,22 +27871,24 @@ var ProductList = React.createClass({displayName: "ProductList",
 
 module.exports = ProductList;
 
-},{"../stores/ProductStore":239,"./Product.jsx":235,"react-router":37,"react/addons":52}],237:[function(require,module,exports){
+},{"../actions/CartActions":228,"../stores/ProductStore":239,"./Product.jsx":235,"react-router":37,"react/addons":52}],237:[function(require,module,exports){
 var React = require('react/addons');
 var Route = require('react-router').Route;
 var App = require('./components/App.jsx');
 var ProductList = require('./components/ProductList.jsx');
+var Cart = require('./components/Cart.jsx');
 //var CheckoutView = require('./components/CheckoutView.jsx');
 //<Route name="checkoutView" path="/checkout" handler={CheckoutView}/>
 var routes = (
 	React.createElement(Route, {name: "home", path: "/", handler: App}, 
-	   React.createElement(Route, {name: "productList", path: "/", handler: ProductList})
+	   React.createElement(Route, {name: "productList", path: "/", handler: ProductList}), 
+	   React.createElement(Route, {name: "checkout", path: "/checkout", handler: Cart})
 	)
 );
 
 module.exports = routes;
 
-},{"./components/App.jsx":231,"./components/ProductList.jsx":236,"react-router":37,"react/addons":52}],238:[function(require,module,exports){
+},{"./components/App.jsx":231,"./components/Cart.jsx":232,"./components/ProductList.jsx":236,"react-router":37,"react/addons":52}],238:[function(require,module,exports){
 var alt = require('../alt');
 var CartActions = require('../actions/CartActions');
 
@@ -27881,20 +27901,19 @@ var CartActions = require('../actions/CartActions');
      });  
      this.on('init',function(){
        self.cartItems = [];
-       self.items = {};
        self.quantity = 0;
      })
    }
 
    Object.defineProperty(CartStore.prototype,"addToCart",{writable:true,configurable:true,value:function(product){"use strict";
      if(this.cartItems[product.id]) {
-        this.items[product.id].qty = this.items[product.id].qty + 1;
+        this.items[product.id] = this.items[product.id] + 1;
      } else {
         this.cartItems.push(product.id);
-        this.items[product.id] =  {"product": product,"qty": 1};
      }
      this.quantity = this.quantity + 1;
    }});
+
 
 
 module.exports = alt.createStore(CartStore, 'CartStore');

@@ -2,7 +2,8 @@ var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var ProductStore = require('../stores/ProductStore');
 var Product = require('./Product.jsx');
- 
+var CartActions = require('../actions/CartActions');
+
 var ProductList = React.createClass({
 
    getInitialState: function(){
@@ -21,15 +22,20 @@ var ProductList = React.createClass({
       this.setState(state);
    },
 
-   render: function(){
-      var products = this.state.products.map(function(product){
+   addToCart: function(product){
+     CartActions.addToCart(product); 
+   },
+
+   eachProduct: function(product,i){
         return (
-                <Product key={product.id} product={product} />           
+              <Product key={product.id} product={product} action={this.addToCart} actionLabel="ADD To Cart"/> 
             );
-      });
+    },
+
+   render: function(){ 
       return (
             <div>
-                {products}
+                {this.state.products.map(this.eachProduct)}
             </div>
        );
    }

@@ -4,6 +4,10 @@ var CartStore = require('../stores/CartStore');
  
 var Cart = React.createClass({
 
+   contextTypes: {
+        router: React.PropTypes.func
+   },
+
    getInitialState: function(){
       return CartStore.getState();
    },
@@ -20,10 +24,15 @@ var Cart = React.createClass({
       this.setState(state);
    },
 
+   checkOut: function(e){
+        e.preventDefault();
+        this.context.router.transitionTo('/checkout');
+   },
+
    render: function(){
       return (
           <div className={"flux-cart"}>
-            <button type="button" className="view-cart" disabled={this.state.items.length > 0 ? "" : "disabled"}>View Cart ({this.state.quantity})</button>
+            <button type="button" className="view-cart" disabled={(this.state.quantity > 0) ? "" : "disabled"} onClick={this.checkOut} > Cart ({this.state.quantity})</button>
           </div>
        );
    }

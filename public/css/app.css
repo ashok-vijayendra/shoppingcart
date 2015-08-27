@@ -258,6 +258,7 @@ button:hover
 {
     background: #27ae60;
     box-shadow: 0 5px 1px #145b32;
+    cursor:  pointer;
 }
 
 button:active
