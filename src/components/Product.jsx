@@ -15,7 +15,6 @@ var Product= React.createClass({
           <div className="flux-product-detail">
             <h1 className="name">{this.props.product.name}</h1>
             {desc}
-            <p className="description">{this.props.product.description}</p>
             <p className="price">Price: ${this.props.product.price}</p>
             <button type="button" onClick={this.action} > {this.props.actionLabel} </button>
           </div>

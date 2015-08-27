@@ -27813,7 +27813,6 @@ var Product= React.createClass({displayName: "Product",
           React.createElement("div", {className: "flux-product-detail"}, 
             React.createElement("h1", {className: "name"}, this.props.product.name), 
             desc, 
-            React.createElement("p", {className: "description"}, this.props.product.description), 
             React.createElement("p", {className: "price"}, "Price: $", this.props.product.price), 
             React.createElement("button", {type: "button", onClick: this.action}, " ", this.props.actionLabel, " ")
           )
@@ -27893,7 +27892,6 @@ var alt = require('../alt');
 var CartActions = require('../actions/CartActions');
 
 
-
    function CartStore(){"use strict";
      var self = this;
      this.bindListeners({
@@ -27901,19 +27899,26 @@ var CartActions = require('../actions/CartActions');
      });  
      this.on('init',function(){
        self.cartItems = [];
+       self.items = {};
        self.quantity = 0;
      })
    }
 
    Object.defineProperty(CartStore.prototype,"addToCart",{writable:true,configurable:true,value:function(product){"use strict";
      if(this.cartItems[product.id]) {
-        this.items[product.id] = this.items[product.id] + 1;
+        this.items[product.id].qty = this.items[product.id].qty + 1;
      } else {
         this.cartItems.push(product.id);
+        this.items[product.id] = {'qty': 1,'product': product};
      }
-     this.quantity = this.quantity + 1;
+     this.quantity+=1;
    }});
 
+   Object.defineProperty(CartStore.prototype,"quantity",{writable:true,configurable:true,value:function(){"use strict";
+    var qty = 0;
+    this.items.map(function(ele,index){ qty+= ele.qty })
+    return qty;
+   }});
 
 
 module.exports = alt.createStore(CartStore, 'CartStore');
