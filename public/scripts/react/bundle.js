@@ -16,7 +16,7 @@ window.onload = function(){
     NProgress.configure({ minimum : 0.4 });
 }
 
-},{"./alt":230,"./routes.jsx":237,"iso":11,"react-router":37,"react/addons":52}],2:[function(require,module,exports){
+},{"./alt":230,"./routes.jsx":238,"iso":11,"react-router":37,"react/addons":52}],2:[function(require,module,exports){
 var config = {
     baseUrl : "http://isomorphic.com:3011"
 }
@@ -27678,7 +27678,7 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"./Cart.jsx":232,"./Footer.jsx":233,"./Header.jsx":234,"./ProductList.jsx":236,"react-router":37,"react/addons":52}],232:[function(require,module,exports){
+},{"./Cart.jsx":232,"./Footer.jsx":234,"./Header.jsx":235,"./ProductList.jsx":237,"react-router":37,"react/addons":52}],232:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var CartStore = require('../stores/CartStore');
@@ -27722,7 +27722,53 @@ var Cart = React.createClass({displayName: "Cart",
 
 module.exports = Cart;
 
-},{"../stores/CartStore":238,"react-router":37,"react/addons":52}],233:[function(require,module,exports){
+},{"../stores/CartStore":239,"react-router":37,"react/addons":52}],233:[function(require,module,exports){
+var React = require('react/addons');
+var RouteHandler = require('react-router').RouteHandler;
+var CartStore = require('../stores/CartStore');
+var Product = require('./Product.jsx');
+
+
+var CartList = React.createClass({displayName: "CartList",
+
+   getInitialState: function(){
+      return CartStore.getState();
+   },
+
+   componentDidMount: function(){
+      CartStore.listen(this.onCartChange);
+   },
+
+   componentWillUnmount: function(){
+      CartStore.unlisten(this.onCartChange);
+   },
+
+   onCartChange: function(state){
+      this.setState(state);
+   },
+
+   removeFromCart: function(e){
+     CartStore.removeFromCart(this.props.product.id);
+   },
+
+   render: function(){
+      var self = this, products = this.state.cartItems.map(function(itemId){
+        return (
+                React.createElement(Product, {key: self.state.items[itemId].product.id, product: self.state.items[itemId].product, action: this.removeFromCart, actionLabel: "Remove"})           
+            );
+      });
+      return (
+            React.createElement("div", null, 
+                products
+            )
+       );
+   }
+
+});
+
+module.exports = CartList;
+
+},{"../stores/CartStore":239,"./Product.jsx":236,"react-router":37,"react/addons":52}],234:[function(require,module,exports){
 var React = require('react/addons');
 var Footer = React.createClass({displayName: "Footer",
 	render: function(){
@@ -27753,7 +27799,7 @@ var Footer = React.createClass({displayName: "Footer",
 
 module.exports = Footer;
 
-},{"react/addons":52}],234:[function(require,module,exports){
+},{"react/addons":52}],235:[function(require,module,exports){
 var React = require('react/addons');
 var ProductActions = require('../actions/ProductActions');
 var Header = React.createClass({displayName: "Header",
@@ -27795,7 +27841,7 @@ var Header = React.createClass({displayName: "Header",
 
 module.exports = Header;
 
-},{"../actions/ProductActions":229,"react/addons":52}],235:[function(require,module,exports){
+},{"../actions/ProductActions":229,"react/addons":52}],236:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var CartActions = require('../actions/CartActions');
@@ -27823,7 +27869,7 @@ var Product= React.createClass({displayName: "Product",
 
 module.exports = Product;
 
-},{"../actions/CartActions":228,"react-router":37,"react/addons":52}],236:[function(require,module,exports){
+},{"../actions/CartActions":228,"react-router":37,"react/addons":52}],237:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var ProductStore = require('../stores/ProductStore');
@@ -27870,24 +27916,23 @@ var ProductList = React.createClass({displayName: "ProductList",
 
 module.exports = ProductList;
 
-},{"../actions/CartActions":228,"../stores/ProductStore":239,"./Product.jsx":235,"react-router":37,"react/addons":52}],237:[function(require,module,exports){
+},{"../actions/CartActions":228,"../stores/ProductStore":240,"./Product.jsx":236,"react-router":37,"react/addons":52}],238:[function(require,module,exports){
 var React = require('react/addons');
 var Route = require('react-router').Route;
 var App = require('./components/App.jsx');
 var ProductList = require('./components/ProductList.jsx');
-var Cart = require('./components/Cart.jsx');
-//var CheckoutView = require('./components/CheckoutView.jsx');
-//<Route name="checkoutView" path="/checkout" handler={CheckoutView}/>
+var CartDetail = require('./components/CartDetail.jsx');
+
 var routes = (
 	React.createElement(Route, {name: "home", path: "/", handler: App}, 
 	   React.createElement(Route, {name: "productList", path: "/", handler: ProductList}), 
-	   React.createElement(Route, {name: "checkout", path: "/checkout", handler: Cart})
+	   React.createElement(Route, {name: "checkout", path: "/checkout", handler: CartDetail})
 	)
 );
 
 module.exports = routes;
 
-},{"./components/App.jsx":231,"./components/Cart.jsx":232,"./components/ProductList.jsx":236,"react-router":37,"react/addons":52}],238:[function(require,module,exports){
+},{"./components/App.jsx":231,"./components/CartDetail.jsx":233,"./components/ProductList.jsx":237,"react-router":37,"react/addons":52}],239:[function(require,module,exports){
 var alt = require('../alt');
 var CartActions = require('../actions/CartActions');
 
@@ -27923,7 +27968,7 @@ var CartActions = require('../actions/CartActions');
 
 module.exports = alt.createStore(CartStore, 'CartStore');
 
-},{"../actions/CartActions":228,"../alt":230}],239:[function(require,module,exports){
+},{"../actions/CartActions":228,"../alt":230}],240:[function(require,module,exports){
 var alt = require('../alt');
 var ProductActions = require('../actions/ProductActions');
 

@@ -1,35 +1,25 @@
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
-var ProductStore = require('../stores/ProductStore');
+var CartStore = require('../stores/CartStore');
 var Product = require('./Product.jsx');
 
 
 var CartList = React.createClass({
 
    getInitialState: function(){
-      return {cart: CartStore.getState(),products: ProductStore.getState().map(function(product){ {product.id: product}})};
+      return CartStore.getState();
    },
 
    componentDidMount: function(){
       CartStore.listen(this.onCartChange);
-      ProductStore.listen(this.onCartChange);
    },
 
    componentWillUnmount: function(){
       CartStore.unlisten(this.onCartChange);
-      ProductStore.unlisten(this.onProductChange);
    },
 
    onCartChange: function(state){
-      var currentState = this.state;
-      currentState.cart = state;
-      this.setState(currentState);
-   },
-
-   onproductChange: function(state){
-      var currentState = this.state;
-      currentState.products = state.map(function(product){ });
-      this.setState(currentState);      
+      this.setState(state);
    },
 
    removeFromCart: function(e){
@@ -37,9 +27,9 @@ var CartList = React.createClass({
    },
 
    render: function(){
-      var products = this.state.cartItems.map(function(productId){
+      var self = this, products = this.state.cartItems.map(function(itemId){
         return (
-                <Product key={product.id} product={product} action={this.removeFromCart} actionLabel="Remove"/>           
+                <Product key={self.state.items[itemId].product.id} product={self.state.items[itemId].product} action={this.removeFromCart} actionLabel="Remove"/>           
             );
       });
       return (
@@ -51,4 +41,4 @@ var CartList = React.createClass({
 
 });
 
-module.exports = ProductList;
+module.exports = CartList;
