@@ -29,7 +29,7 @@ var CartList = React.createClass({
    render: function(){
       var self = this, products = this.state.cartItems.map(function(itemId){
         return (
-                <Product key={self.state.items[itemId].product.id} product={self.state.items[itemId].product} action={this.removeFromCart} actionLabel="Remove"/>           
+                <Product key={self.state.items[itemId].product.id} product={self.state.items[itemId].product} cardDetail={true} action={this.removeFromCart} actionLabel="Remove"/>           
             );
       });
       return (

@@ -3,6 +3,7 @@ var RouteHandler = require('react-router').RouteHandler;
 var ProductStore = require('../stores/ProductStore');
 var Product = require('./Product.jsx');
 var CartActions = require('../actions/CartActions');
+var Cart = require('./Cart.jsx');
 
 var ProductList = React.createClass({
 
@@ -34,8 +35,9 @@ var ProductList = React.createClass({
 
    render: function(){ 
       return (
-            <div>
+            <div className="product-list-wrapper">
                 {this.state.products.map(this.eachProduct)}
+                <Cart />
             </div>
        );
    }

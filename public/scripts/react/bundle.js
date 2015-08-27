@@ -27661,7 +27661,7 @@ var RouteHandler = require('react-router').RouteHandler;
 var Header = require('./Header.jsx');
 var Footer = require('./Footer.jsx');
 var ProductList = require('./ProductList.jsx');
-var Cart = require('./Cart.jsx');
+
 
 var App = React.createClass({displayName: "App",
 	render: function(){
@@ -27669,7 +27669,6 @@ var App = React.createClass({displayName: "App",
             React.createElement("div", {className: "body-container"}, 
               React.createElement(Header, null), 
               React.createElement(RouteHandler, null), 
-              React.createElement(Cart, null), 
               React.createElement(Footer, null)
             )
 			);
@@ -27678,7 +27677,7 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"./Cart.jsx":232,"./Footer.jsx":234,"./Header.jsx":235,"./ProductList.jsx":237,"react-router":37,"react/addons":52}],232:[function(require,module,exports){
+},{"./Footer.jsx":234,"./Header.jsx":235,"./ProductList.jsx":237,"react-router":37,"react/addons":52}],232:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var CartStore = require('../stores/CartStore');
@@ -27754,7 +27753,7 @@ var CartList = React.createClass({displayName: "CartList",
    render: function(){
       var self = this, products = this.state.cartItems.map(function(itemId){
         return (
-                React.createElement(Product, {key: self.state.items[itemId].product.id, product: self.state.items[itemId].product, action: this.removeFromCart, actionLabel: "Remove"})           
+                React.createElement(Product, {key: self.state.items[itemId].product.id, product: self.state.items[itemId].product, cardDetail: true, action: this.removeFromCart, actionLabel: "Remove"})           
             );
       });
       return (
@@ -27854,7 +27853,7 @@ var Product= React.createClass({displayName: "Product",
                  React.createElement("p", {className: "short-description"}, this.props.product.shortdescription) :
                  React.createElement("p", {className: "description"}, this.props.product.description) ;
       return (
-        React.createElement("div", {className: "flux-product"}, 
+        React.createElement("div", {className: "flux-product "+ (this.props.cardDetail ? "cart-detail" : "")}, 
           React.createElement("img", {src: '/images/' + this.props.product.image}), 
           React.createElement("div", {className: "flux-product-detail"}, 
             React.createElement("h1", {className: "name"}, this.props.product.name), 
@@ -27875,6 +27874,7 @@ var RouteHandler = require('react-router').RouteHandler;
 var ProductStore = require('../stores/ProductStore');
 var Product = require('./Product.jsx');
 var CartActions = require('../actions/CartActions');
+var Cart = require('./Cart.jsx');
 
 var ProductList = React.createClass({displayName: "ProductList",
 
@@ -27906,8 +27906,9 @@ var ProductList = React.createClass({displayName: "ProductList",
 
    render: function(){ 
       return (
-            React.createElement("div", null, 
-                this.state.products.map(this.eachProduct)
+            React.createElement("div", {className: "product-list-wrapper"}, 
+                this.state.products.map(this.eachProduct), 
+                React.createElement(Cart, null)
             )
        );
    }
@@ -27916,7 +27917,7 @@ var ProductList = React.createClass({displayName: "ProductList",
 
 module.exports = ProductList;
 
-},{"../actions/CartActions":228,"../stores/ProductStore":240,"./Product.jsx":236,"react-router":37,"react/addons":52}],238:[function(require,module,exports){
+},{"../actions/CartActions":228,"../stores/ProductStore":240,"./Cart.jsx":232,"./Product.jsx":236,"react-router":37,"react/addons":52}],238:[function(require,module,exports){
 var React = require('react/addons');
 var Route = require('react-router').Route;
 var App = require('./components/App.jsx');

@@ -10,6 +10,13 @@ h1   {
     font-size: 2.4rem; /* =24px */ 
 } 
 
+.product-list-wrapper {
+   position:  relative; 
+}
+
+.cart-detail.flux-product img {
+    width:  25%;
+}
 header, footer {
     overflow: auto;
     padding: 1rem;
