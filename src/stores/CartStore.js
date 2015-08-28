@@ -1,7 +1,7 @@
 var alt = require('../alt');
 var CartActions = require('../actions/CartActions');
 var Cookie = require('../utils/Cookie');
-
+var assign = require('object-assign');
 
 class CartStore{
    constructor(){
@@ -11,6 +11,7 @@ class CartStore{
      });  
      this.on('init',function(){
         self.cartItems = {};
+        self.products = {}
         self.quantity = Object.keys(self.cartItems).length
      })
    }
@@ -18,12 +19,15 @@ class CartStore{
    addToCart(product){
      if(this.cartItems[product.id]) {
         this.cartItems[product.id]+=1;
+
      } else {
         this.cartItems[product.id] = 1;
      }
-     Cookie.createCookie('cartItems',JSON.stringify(this.cartItems));
+     this.products[product.id] = assign({},product)
      this.quantity+=1;
+     Cookie.createCookie('cartItems',JSON.stringify(this.cartItems));
    }
+
 }
 
 module.exports = alt.createStore(CartStore, 'CartStore');
