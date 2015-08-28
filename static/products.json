@@ -1,26 +1,23 @@
-[
-  {
-    "id": 1,
+{
+  "1" : {
     "name": "iPhone",
     "image": "iphone.jpg",
     "description": "iPhoneis a line of smartphones designed and marketed by Apple Inc. They run Apples iOS mobile operating system. The first generation iPhone was released on June 29, 2007; the most recent iPhone models are the iPhone 6 and iPhone 6 Plus, which were unveiled at a special event on September 9, 2014.The user interface is built around the devices multi-touch screen, including a virtual keyboard.",
     "shortdescription": "iPhoneis a line of smartphones designed and marketed by Apple Inc.",
     "price": 699
   },
-  {
-    "id": 2,
+  "2": {
     "name": "Samsung",
     "image": "samsung.jpg",
     "description": "iPhoneis a line of smartphones designed and marketed by Apple Inc. They run Apples iOS mobile operating system. The first generation iPhone was released on June 29, 2007; the most recent iPhone models are the iPhone 6 and iPhone 6 Plus, which were unveiled at a special event on September 9, 2014.The user interface is built around the devices multi-touch screen, including a virtual keyboard.",
     "shortdescription": "iPhoneis a line of smartphones designed and marketed by Apple Inc.",
     "price": 499
   },
-  {
-    "id": 3,
+  "3": {
     "name": "HTC",
     "image": "htc.jpg",
     "description": "iPhoneis a line of smartphones designed and marketed by Apple Inc. They run Apples iOS mobile operating system. The first generation iPhone was released on June 29, 2007; the most recent iPhone models are the iPhone 6 and iPhone 6 Plus, which were unveiled at a special event on September 9, 2014.The user interface is built around the devices multi-touch screen, including a virtual keyboard.",
     "shortdescription": "iPhoneis a line of smartphones designed and marketed by Apple Inc.",
     "price": 399
   }  
-]
+}

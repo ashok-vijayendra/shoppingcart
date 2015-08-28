@@ -22,8 +22,8 @@ var CartList = React.createClass({
       this.setState(state);
    },
 
-   removeFromCart: function(e){
-     CartStore.removeFromCart(this.props.product.id);
+   removeFromCart: function(product){
+     CartStore.removeFromCart(product.id);
    },
 
    render: function(){

@@ -27,7 +27,8 @@ var ProductList = React.createClass({
      CartActions.addToCart(product); 
    },
 
-   eachProduct: function(product,i){
+   eachProduct: function(productid){
+        var product = this.state.products[productid];
         return (
               <Product key={product.id} product={product} action={this.addToCart} actionLabel="ADD To Cart"/> 
             );
@@ -36,7 +37,7 @@ var ProductList = React.createClass({
    render: function(){ 
       return (
             <div className="product-list-wrapper">
-                {this.state.products.map(this.eachProduct)}
+                {Object.keys(this.state.products).map(this.eachProduct)}
                 <Cart />
             </div>
        );

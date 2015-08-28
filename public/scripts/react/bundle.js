@@ -27746,8 +27746,8 @@ var CartList = React.createClass({displayName: "CartList",
       this.setState(state);
    },
 
-   removeFromCart: function(e){
-     CartStore.removeFromCart(this.props.product.id);
+   removeFromCart: function(product){
+     CartStore.removeFromCart(product.id);
    },
 
    render: function(){
@@ -27898,7 +27898,8 @@ var ProductList = React.createClass({displayName: "ProductList",
      CartActions.addToCart(product); 
    },
 
-   eachProduct: function(product,i){
+   eachProduct: function(productid){
+        var product = this.state.products[productid];
         return (
               React.createElement(Product, {key: product.id, product: product, action: this.addToCart, actionLabel: "ADD To Cart"}) 
             );
@@ -27907,7 +27908,7 @@ var ProductList = React.createClass({displayName: "ProductList",
    render: function(){ 
       return (
             React.createElement("div", {className: "product-list-wrapper"}, 
-                this.state.products.map(this.eachProduct), 
+                Object.keys(this.state.products).map(this.eachProduct), 
                 React.createElement(Cart, null)
             )
        );
@@ -27936,6 +27937,8 @@ module.exports = routes;
 },{"./components/App.jsx":231,"./components/CartDetail.jsx":233,"./components/ProductList.jsx":237,"react-router":37,"react/addons":52}],239:[function(require,module,exports){
 var alt = require('../alt');
 var CartActions = require('../actions/CartActions');
+var Cookie = require('../utils/Cookie');
+
 
 
    function CartStore(){"use strict";
@@ -27944,32 +27947,25 @@ var CartActions = require('../actions/CartActions');
       addToCart: CartActions.ADD_TO_CART
      });  
      this.on('init',function(){
-       self.cartItems = [];
-       self.items = {};
-       self.quantity = 0;
+        self.cartItems = {};
+        self.quantity = Object.keys(self.cartItems).length
      })
    }
 
    Object.defineProperty(CartStore.prototype,"addToCart",{writable:true,configurable:true,value:function(product){"use strict";
      if(this.cartItems[product.id]) {
-        this.items[product.id].qty = this.items[product.id].qty + 1;
+        this.cartItems[product.id]+=1;
      } else {
-        this.cartItems.push(product.id);
-        this.items[product.id] = {'qty': 1,'product': product};
+        this.cartItems[product.id] = 1;
      }
+     Cookie.createCookie('cartItems',JSON.stringify(this.cartItems));
      this.quantity+=1;
-   }});
-
-   Object.defineProperty(CartStore.prototype,"quantity",{writable:true,configurable:true,value:function(){"use strict";
-    var qty = 0;
-    this.items.map(function(ele,index){ qty+= ele.qty })
-    return qty;
    }});
 
 
 module.exports = alt.createStore(CartStore, 'CartStore');
 
-},{"../actions/CartActions":228,"../alt":230}],240:[function(require,module,exports){
+},{"../actions/CartActions":228,"../alt":230,"../utils/Cookie":241}],240:[function(require,module,exports){
 var alt = require('../alt');
 var ProductActions = require('../actions/ProductActions');
 
@@ -27981,7 +27977,7 @@ var ProductActions = require('../actions/ProductActions');
       updateProducts: ProductActions.UPDATE_PRODUCTS
      });  
      this.on('init',function(){
-       self.products = [];
+       self.products = {};
      })
    }
 
@@ -27992,4 +27988,27 @@ var ProductActions = require('../actions/ProductActions');
 
 module.exports = alt.createStore(ProductStore, 'ProductStore');
 
-},{"../actions/ProductActions":229,"../alt":230}]},{},[1]);
+},{"../actions/ProductActions":229,"../alt":230}],241:[function(require,module,exports){
+module.exports = {
+    createCookie: function(name,value,days) { 
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        var expires = "; expires="+date.toGMTString();
+      }
+      else var expires = "";
+      document.cookie = name+"="+value+expires+"; path=/";
+    },
+    readCookie: function(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+      }
+      return null;
+    }
+}
+
+},{}]},{},[1]);

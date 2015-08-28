@@ -7,6 +7,7 @@ var Iso = require('iso');
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var Router = require('react-router');
 var app = express();
 var routes = require('./src/routes.jsx')
@@ -25,9 +26,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json 
 app.use(bodyParser.json({limit : '50mb'}));
 // Parse Cookie header and populate req.cookies with an object keyed by the cookie names
-// app.use(cookieParser())
+app.use(cookieParser())
 // app.get('/', function(req, res) {
-// console.log("Cookies: ", req.cookies)
+//console.log("Cookies: ", req.cookies)
 // })
 //use Routes here
 app.use('/',serverRoutes);

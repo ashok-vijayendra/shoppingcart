@@ -9,7 +9,7 @@ class ProductStore{
       updateProducts: ProductActions.UPDATE_PRODUCTS
      });  
      this.on('init',function(){
-       self.products = [];
+       self.products = {};
      })
    }
 
