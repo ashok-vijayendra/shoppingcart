@@ -3,7 +3,7 @@ var RouteHandler = require('react-router').RouteHandler;
 var CartActions = require('../actions/CartActions');
 var Product= React.createClass({ 
    action: function(e){
-     this.props.action(this.props.product)
+     this.props.action(this.props.product,this.props.id)
    },
    render: function(){ 
       var desc = ( this.props.cardDetail ) ? 

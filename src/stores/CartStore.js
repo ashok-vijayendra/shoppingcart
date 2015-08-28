@@ -7,7 +7,8 @@ class CartStore{
    constructor(){
      var self = this;
      this.bindListeners({
-      addToCart: CartActions.ADD_TO_CART
+      addToCart: CartActions.ADD_TO_CART,
+      removeFromCart: CartActions.REMOVE_FROM_CART
      });  
      this.on('init',function(){
         self.cartItems = {};
@@ -27,6 +28,17 @@ class CartStore{
      this.quantity+=1;
      Cookie.createCookie('cartItems',JSON.stringify(this.cartItems));
    }
+
+   removeFromCart(productId){
+     this.cartItems[productId]-=1;
+     if(this.cartItems[productId] == 0){
+        delete this.cartItems[productId]
+        delete this.products[productId]
+     }
+     this.quantity-=1;
+     Cookie.createCookie('cartItems',JSON.stringify(this.cartItems));
+   }
+
 
 }
 

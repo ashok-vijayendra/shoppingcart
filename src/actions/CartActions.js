@@ -4,7 +4,8 @@ var config = require('../../config');
 
 class CartActions {
 
-    addToCart(product){
+    addToCart(product,id){
+    	product['id'] = id;
         this.dispatch(product);
     }
 

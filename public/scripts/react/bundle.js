@@ -27653,7 +27653,8 @@ var config = require('../../config');
 
 function CartActions(){"use strict";}
 
-    Object.defineProperty(CartActions.prototype,"addToCart",{writable:true,configurable:true,value:function(product){"use strict";
+    Object.defineProperty(CartActions.prototype,"addToCart",{writable:true,configurable:true,value:function(product,id){"use strict";
+    	product['id'] = id;
         this.dispatch(product);
     }});
 
@@ -27796,12 +27797,12 @@ var CartList = React.createClass({displayName: "CartList",
       var self = this, products = Object.keys(this.state.cartItems).map(function(productId){
         var product = self.state.products[productId];
         return (
-                React.createElement(Product, {key: productId, product: self.state.products[productId], cardDetail: true, action: this.removeFromCart, actionLabel: "Remove"})           
+                React.createElement(Product, {key: productId, product: self.state.products[productId], id: productId, cardDetail: true, action: self.removeFromCart, actionLabel: "Remove"})           
             );
       });
       return (
             React.createElement("div", null, 
-                products
+                 ( products && products.length ) ? products : "Your Cart is Empty"
             )
        );
    }
@@ -27889,7 +27890,7 @@ var RouteHandler = require('react-router').RouteHandler;
 var CartActions = require('../actions/CartActions');
 var Product= React.createClass({displayName: "Product", 
    action: function(e){
-     this.props.action(this.props.product)
+     this.props.action(this.props.product,this.props.id)
    },
    render: function(){ 
       var desc = ( this.props.cardDetail ) ? 
@@ -27937,14 +27938,14 @@ var ProductList = React.createClass({displayName: "ProductList",
       this.setState(state);
    },
 
-   addToCart: function(product){
-     CartActions.addToCart(product); 
+   addToCart: function(product,productId){
+     CartActions.addToCart(product,productId); 
    },
 
-   eachProduct: function(productid){
-        var product = this.state.products[productid];
+   eachProduct: function(productId){
+        var product = this.state.products[productId];
         return (
-              React.createElement(Product, {key: product.id, product: product, action: this.addToCart, actionLabel: "ADD To Cart"}) 
+              React.createElement(Product, {key: productId, product: product, id: productId, action: this.addToCart, actionLabel: "ADD To Cart"}) 
             );
     },
 
@@ -27987,7 +27988,8 @@ var assign = require('object-assign');
    function CartStore(){"use strict";
      var self = this;
      this.bindListeners({
-      addToCart: CartActions.ADD_TO_CART
+      addToCart: CartActions.ADD_TO_CART,
+      removeFromCart: CartActions.REMOVE_FROM_CART
      });  
      this.on('init',function(){
         self.cartItems = {};
@@ -28007,6 +28009,17 @@ var assign = require('object-assign');
      this.quantity+=1;
      Cookie.createCookie('cartItems',JSON.stringify(this.cartItems));
    }});
+
+   Object.defineProperty(CartStore.prototype,"removeFromCart",{writable:true,configurable:true,value:function(productId){"use strict";
+     this.cartItems[productId]-=1;
+     if(this.cartItems[productId] == 0){
+        delete this.cartItems[productId]
+        delete this.products[productId]
+     }
+     this.quantity-=1;
+     Cookie.createCookie('cartItems',JSON.stringify(this.cartItems));
+   }});
+
 
 
 

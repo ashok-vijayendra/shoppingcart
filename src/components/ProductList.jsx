@@ -23,14 +23,14 @@ var ProductList = React.createClass({
       this.setState(state);
    },
 
-   addToCart: function(product){
-     CartActions.addToCart(product); 
+   addToCart: function(product,productId){
+     CartActions.addToCart(product,productId); 
    },
 
-   eachProduct: function(productid){
-        var product = this.state.products[productid];
+   eachProduct: function(productId){
+        var product = this.state.products[productId];
         return (
-              <Product key={product.id} product={product} action={this.addToCart} actionLabel="ADD To Cart"/> 
+              <Product key={productId} product={product} id={productId} action={this.addToCart} actionLabel="ADD To Cart"/> 
             );
     },
 
