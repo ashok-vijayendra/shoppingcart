@@ -23,8 +23,8 @@ var CartList = React.createClass({
       this.setState(state);
    },
 
-   removeFromCart: function(product){
-     CartActions.removeFromCart(product.id); 
+   removeFromCart: function(product,productId){
+     CartActions.removeFromCart(productId); 
    },
 
    render: function(){
