@@ -26,7 +26,7 @@ var Cart = React.createClass({
 
    checkOut: function(e){
         e.preventDefault();
-        this.context.router.transitionTo('/checkout');
+        this.context.router.transitionTo('/viewcart');
    },
 
    render: function(){

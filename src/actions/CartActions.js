@@ -1,6 +1,4 @@
 var alt = require('../alt');
-var request = require('superagent');
-var config = require('../../config');
 
 class CartActions {
 

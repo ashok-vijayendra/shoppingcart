@@ -1,5 +1,6 @@
 var React = require('react/addons');
 var ProductActions = require('../actions/ProductActions');
+
 var Header = React.createClass({
     contextTypes: {
         router: React.PropTypes.func

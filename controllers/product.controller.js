@@ -34,7 +34,7 @@ module.exports = {
 	    return res.json(_products);
 	},
 
-	checkout: function(req,res,next){
+	viewcart: function(req,res,next){
 	   res.locals.data = getCartStore(req);
 	   next();
 	}

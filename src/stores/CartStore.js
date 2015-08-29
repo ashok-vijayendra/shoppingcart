@@ -10,7 +10,7 @@ class CartStore{
       addToCart: CartActions.ADD_TO_CART,
       removeFromCart: CartActions.REMOVE_FROM_CART
      });  
-     this.on('init',function(){
+     this.on('init',function(){ 
         self.cartItems = {};
         self.products = {}
         self.quantity = Object.keys(self.cartItems).length

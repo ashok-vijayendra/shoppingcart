@@ -7,7 +7,7 @@ var CartDetail = require('./components/CartDetail.jsx');
 var routes = (
 	<Route name='home' path='/' handler={App}>
 	   <Route name="productList" path="/" handler={ProductList}/> 
-	   <Route name="checkout" path="/checkout" handler={CartDetail}/>  
+	   <Route name="viewcart" path="/viewcart" handler={CartDetail}/>  
 	</Route>
 );
 

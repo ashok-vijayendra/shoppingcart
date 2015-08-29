@@ -27648,8 +27648,6 @@ module.exports = function(arr, fn, initial){
 };
 },{}],229:[function(require,module,exports){
 var alt = require('../alt');
-var request = require('superagent');
-var config = require('../../config');
 
 function CartActions(){"use strict";}
 
@@ -27665,7 +27663,7 @@ function CartActions(){"use strict";}
 
 module.exports = alt.createActions(CartActions);
 
-},{"../../config":2,"../alt":231,"superagent":226}],230:[function(require,module,exports){
+},{"../alt":231}],230:[function(require,module,exports){
 var alt = require('../alt');
 var request = require('superagent');
 var config = require('../../config'); 
@@ -27702,8 +27700,6 @@ var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var Header = require('./Header.jsx');
 var Footer = require('./Footer.jsx');
-var ProductList = require('./ProductList.jsx');
-
 
 var App = React.createClass({displayName: "App",
 	render: function(){
@@ -27719,7 +27715,7 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"./Footer.jsx":235,"./Header.jsx":236,"./ProductList.jsx":238,"react-router":38,"react/addons":53}],233:[function(require,module,exports){
+},{"./Footer.jsx":235,"./Header.jsx":236,"react-router":38,"react/addons":53}],233:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var CartStore = require('../stores/CartStore');
@@ -27748,7 +27744,7 @@ var Cart = React.createClass({displayName: "Cart",
 
    checkOut: function(e){
         e.preventDefault();
-        this.context.router.transitionTo('/checkout');
+        this.context.router.transitionTo('/viewcart');
    },
 
    render: function(){
@@ -27847,6 +27843,7 @@ module.exports = Footer;
 },{"react/addons":53}],236:[function(require,module,exports){
 var React = require('react/addons');
 var ProductActions = require('../actions/ProductActions');
+
 var Header = React.createClass({displayName: "Header",
     contextTypes: {
         router: React.PropTypes.func
@@ -27889,7 +27886,7 @@ module.exports = Header;
 },{"../actions/ProductActions":230,"react/addons":53}],237:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
-var CartActions = require('../actions/CartActions');
+
 var Product= React.createClass({displayName: "Product", 
    action: function(e){
      this.props.action(this.props.product,this.props.id)
@@ -27913,7 +27910,7 @@ var Product= React.createClass({displayName: "Product",
 
 module.exports = Product;
 
-},{"../actions/CartActions":229,"react-router":38,"react/addons":53}],238:[function(require,module,exports){
+},{"react-router":38,"react/addons":53}],238:[function(require,module,exports){
 var React = require('react/addons');
 var RouteHandler = require('react-router').RouteHandler;
 var ProductStore = require('../stores/ProductStore');
@@ -27973,7 +27970,7 @@ var CartDetail = require('./components/CartDetail.jsx');
 var routes = (
 	React.createElement(Route, {name: "home", path: "/", handler: App}, 
 	   React.createElement(Route, {name: "productList", path: "/", handler: ProductList}), 
-	   React.createElement(Route, {name: "checkout", path: "/checkout", handler: CartDetail})
+	   React.createElement(Route, {name: "viewcart", path: "/viewcart", handler: CartDetail})
 	)
 );
 
@@ -27992,7 +27989,7 @@ var assign = require('object-assign');
       addToCart: CartActions.ADD_TO_CART,
       removeFromCart: CartActions.REMOVE_FROM_CART
      });  
-     this.on('init',function(){
+     this.on('init',function(){ 
         self.cartItems = {};
         self.products = {}
         self.quantity = Object.keys(self.cartItems).length
