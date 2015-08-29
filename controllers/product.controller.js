@@ -2,11 +2,7 @@ var request = require('superagent');
 var fs = require('fs');
 var config = require('../config');
 
-function loadProducts(){
-  return (JSON.parse(fs.readFileSync('./static/products.json', 'utf8')));
-}
-
-var _products = loadProducts();
+var _products = (JSON.parse(fs.readFileSync('./static/products.json', 'utf8')));
 
 function getCartStore(req,res){
   var cookieProducts = {},cartItems = {}, cookieProducts = {}, quantity = 0;
@@ -26,17 +22,21 @@ function getCartStore(req,res){
   }
 }
 
-exports.allProducts = function(req,res,next){ 
-   res.locals.data = getCartStore(req);
-   res.locals.data["ProductStore"] = { "products" :  _products }
-   next();
+module.exports = {
+
+	allProducts: function(req,res,next){ 
+	   res.locals.data = getCartStore(req);
+	   res.locals.data["ProductStore"] = { "products" :  _products }
+	   next();
+	},
+
+	loadProductsViaAjax: function(req,res){
+	    return res.json(_products);
+	},
+
+	checkout: function(req,res,next){
+	   res.locals.data = getCartStore(req);
+	   next();
+	}
 }
 
-exports.loadProductsViaAjax = function(req,res){
-    return res.json(_products);
-}
-
-exports.checkout = function(req,res,next){
-   res.locals.data = getCartStore(req);
-   next();
-}
