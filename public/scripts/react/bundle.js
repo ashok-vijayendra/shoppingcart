@@ -27803,7 +27803,7 @@ var CartList = React.createClass({displayName: "CartList",
       return (
             React.createElement("div", null, 
                 React.createElement("div", {className: "cart-detail-heading"}, " Ordered Products ", React.createElement("div", {className: "total"}, " Total "), " "), 
-                 ( products && products.length ) ? products : "Your Cart is Empty", 
+                 ( products && products.length ) ? products :  React.createElement("div", {className: "product-wrapper"}, " Your Cart is Empty "), 
                 React.createElement("div", {className: "cart-detail-footer"}, " ", React.createElement("strong", null, " Grand Total "), " ", React.createElement("div", {className: "total"}, " ", grandtotal, " "), "  ")
             )
        );
@@ -27821,19 +27821,19 @@ var Footer = React.createClass({displayName: "Footer",
 	  	React.createElement("footer", null, 
 	       React.createElement("ul", {className: "outer-wrapper"}, 
              React.createElement("li", null, 
-                "Connect with us", 
+                React.createElement("div", {className: "footer-heading"}, " ", React.createElement("strong", null, " Connect with us ")), 
                 React.createElement("ul", null, 
-                   React.createElement("li", null, " Facebook "), 
-                   React.createElement("li", null, " Twitter "), 
-                   React.createElement("li", null, " LinkedIn ")
+                   React.createElement("li", null, " ", React.createElement("a", {href: "#"}, " Facebook "), " "), 
+                   React.createElement("li", null, " ", React.createElement("a", {href: "#"}, " Twitter "), " "), 
+                   React.createElement("li", null, " ", React.createElement("a", {href: "#"}, " LinkedIn "), " ")
                 )
              ), 
              React.createElement("li", null, 
-                "More", 
+                React.createElement("div", {className: "footer-heading"}, " ", React.createElement("strong", null, " More... ")), 
                 React.createElement("ul", null, 
-                   React.createElement("li", null, " Photos "), 
-                   React.createElement("li", null, " Videos "), 
-                   React.createElement("li", null, " Blogs ")
+                   React.createElement("li", null, " ", React.createElement("a", {href: "#"}, " Photos "), " "), 
+                   React.createElement("li", null, " ", React.createElement("a", {href: "#"}, " Videos"), " "), 
+                   React.createElement("li", null, " ", React.createElement("a", {href: "#"}, " Blogs"), " ")
                 )
              )
            )

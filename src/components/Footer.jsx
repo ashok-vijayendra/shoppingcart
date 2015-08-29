@@ -5,19 +5,19 @@ var Footer = React.createClass({
 	  	<footer>
 	       <ul className="outer-wrapper">
              <li> 
-                Connect with us
+                <div className="footer-heading"> <strong> Connect with us </strong></div>
                 <ul>
-                   <li> Facebook </li>
-                   <li> Twitter </li>
-                   <li> LinkedIn </li>
+                   <li> <a href="#"> Facebook </a> </li>
+                   <li> <a href="#"> Twitter </a> </li>
+                   <li> <a href="#"> LinkedIn </a> </li>
                 </ul>
              </li>
              <li> 
-                More
+                <div className="footer-heading"> <strong> More... </strong></div>
                 <ul>
-                   <li> Photos </li>
-                   <li> Videos </li>
-                   <li> Blogs </li>
+                   <li> <a href="#"> Photos </a> </li>
+                   <li> <a href="#"> Videos</a> </li>
+                   <li> <a href="#"> Blogs</a> </li> 
                 </ul>
              </li>
            </ul>

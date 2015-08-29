@@ -16,7 +16,12 @@
 
 %header-footer-content {
     overflow: auto;
-    padding: 1rem;
-    background: #C18E99;
+    background: #535353;
     text-align: center; 
+    a {
+      color: #fff; 
+    }
+    ul {
+      padding: 0;
+    } 
 }

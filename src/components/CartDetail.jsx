@@ -35,9 +35,9 @@ var CartList = React.createClass({
             );
       });
       return (
-            <div>
+            <div> 
                 <div className="cart-detail-heading"> Ordered Products <div className="total"> Total </div> </div>
-                { ( products && products.length ) ? products : "Your Cart is Empty"}
+                { ( products && products.length ) ? products :  <div className="product-wrapper"> Your Cart is Empty </div> }
                 <div className="cart-detail-footer"> <strong> Grand Total </strong> <div className="total"> {grandtotal} </div>  </div>
             </div>
        );
