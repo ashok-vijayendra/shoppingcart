@@ -28,15 +28,17 @@ var CartList = React.createClass({
    },
 
    render: function(){
-      var self = this, products = Object.keys(this.state.cartItems).map(function(productId){
-        var product = self.state.products[productId];
+      var self = this, grandtotal = 0, products = Object.keys(this.state.cartItems).map(function(productId){
+        var product = self.state.products[productId]; grandtotal += self.state.cartItems[productId] * self.state.products[productId].price;
         return (
                 <Product key={productId} product={self.state.products[productId]} id={productId} cardDetail={true} quantity={self.state.cartItems[productId]} action={self.removeFromCart} actionLabel="Remove"/>           
             );
       });
       return (
             <div>
+                <div className="cart-detail-heading"> Ordered Products <div className="total"> Total </div> </div>
                 { ( products && products.length ) ? products : "Your Cart is Empty"}
+                <div className="cart-detail-footer"> <strong> Grand Total </strong> <div className="total"> {grandtotal} </div>  </div>
             </div>
        );
    }

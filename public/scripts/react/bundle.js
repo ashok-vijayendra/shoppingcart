@@ -27794,15 +27794,17 @@ var CartList = React.createClass({displayName: "CartList",
    },
 
    render: function(){
-      var self = this, products = Object.keys(this.state.cartItems).map(function(productId){
-        var product = self.state.products[productId];
+      var self = this, grandtotal = 0, products = Object.keys(this.state.cartItems).map(function(productId){
+        var product = self.state.products[productId]; grandtotal += self.state.cartItems[productId] * self.state.products[productId].price;
         return (
                 React.createElement(Product, {key: productId, product: self.state.products[productId], id: productId, cardDetail: true, quantity: self.state.cartItems[productId], action: self.removeFromCart, actionLabel: "Remove"})           
             );
       });
       return (
             React.createElement("div", null, 
-                 ( products && products.length ) ? products : "Your Cart is Empty"
+                React.createElement("div", {className: "cart-detail-heading"}, " Ordered Products ", React.createElement("div", {className: "total"}, " Total "), " "), 
+                 ( products && products.length ) ? products : "Your Cart is Empty", 
+                React.createElement("div", {className: "cart-detail-footer"}, " ", React.createElement("strong", null, " Grand Total "), " ", React.createElement("div", {className: "total"}, " ", grandtotal, " "), "  ")
             )
        );
    }
@@ -27893,20 +27895,17 @@ var Product= React.createClass({displayName: "Product",
      this.props.action(this.props.product,this.props.id)
    },
    render: function(){ 
-      var desc = ( this.props.cardDetail ) ? 
-                 React.createElement("p", {className: "short-description"}, this.props.product.shortdescription) :
-                 React.createElement("p", {className: "description"}, this.props.product.description) ;
-      var quantity = ( this.props.quantity ) ? React.createElement("p", {className: "quantity"}, "Qty: ", this.props.quantity) : ""; 
       return (
-        React.createElement("div", {className: "flux-product "+ (this.props.cardDetail ? "cart-detail" : "")}, 
+        React.createElement("div", {className: "flux-product "+ (this.props.cardDetail ? "cart-detail" : "product-detail")}, 
           React.createElement("img", {src: '/images/' + this.props.product.image}), 
           React.createElement("div", {className: "flux-product-detail"}, 
             React.createElement("h1", {className: "name"}, this.props.product.name), 
-            desc, 
-            quantity, 
+            React.createElement("p", {className: "description"}, this.props.product.description), 
+            React.createElement("p", {className: "quantity"}, "Qty: ", this.props.quantity), 
             React.createElement("p", {className: "price"}, "Price: $", this.props.product.price), 
             React.createElement("button", {type: "button", onClick: this.action}, " ", this.props.actionLabel, " ")
-          )
+          ), 
+          React.createElement("div", {className: "total"}, " ",  this.props.quantity  * this.props.product.price, " ")
         )
        );
    }
