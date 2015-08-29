@@ -20,7 +20,6 @@ class CartStore{
    addToCart(product){
      if(this.cartItems[product.id]) {
         this.cartItems[product.id]+=1;
-
      } else {
         this.cartItems[product.id] = 1;
      }

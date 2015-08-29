@@ -28001,7 +28001,6 @@ var assign = require('object-assign');
    Object.defineProperty(CartStore.prototype,"addToCart",{writable:true,configurable:true,value:function(product){"use strict";
      if(this.cartItems[product.id]) {
         this.cartItems[product.id]+=1;
-
      } else {
         this.cartItems[product.id] = 1;
      }

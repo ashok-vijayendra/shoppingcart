@@ -34,7 +34,6 @@ app.use(cookieParser())
 app.use('/',serverRoutes);
 //middleware that is run at the last
 app.use(function(req,res){
-  console.log(res.locals.data);
   // initial the flux store state based on res.locals.data	
   alt.bootstrap(JSON.stringify(res.locals.data || {}));
   //Iso is a class. You instantiate it, 
