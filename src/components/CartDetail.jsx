@@ -31,7 +31,7 @@ var CartList = React.createClass({
       var self = this, products = Object.keys(this.state.cartItems).map(function(productId){
         var product = self.state.products[productId];
         return (
-                <Product key={productId} product={self.state.products[productId]} id={productId} cardDetail={true} action={self.removeFromCart} actionLabel="Remove"/>           
+                <Product key={productId} product={self.state.products[productId]} id={productId} cardDetail={true} quantity={self.state.cartItems[productId]} action={self.removeFromCart} actionLabel="Remove"/>           
             );
       });
       return (
