@@ -1,0 +1,28 @@
+.product-list-wrapper {
+   position:  relative; 
+}
+
+.product-wrapper {
+    @extend %content-container; 
+    img {
+        width: 50%;
+        border: 2px solid #ddd;
+    }
+    img, .product-detail-content {
+        display: inline-block;
+        vertical-align: top; 
+    }
+    .product-detail-content
+	{
+	    width: 50%;
+	    padding: 0 20px;	    
+	}
+	&.product-detail {
+		.quantity {
+		  display: none;
+		}
+		.total {
+		  display: none;
+		}
+	}
+}

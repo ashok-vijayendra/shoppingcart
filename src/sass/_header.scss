@@ -1,0 +1,32 @@
+header{
+	background: #C18E99;
+    text-align: center;
+	@extend %header-footer-content;
+	.company-logo {
+	    float: left;
+	    width: 10rem; 
+	}
+	ul {
+		li {
+		    display: inline-block;
+		    padding: 1rem;
+		    list-style: none;	 		
+		}
+	}
+} 
+
+footer {
+    @extend %header-footer-content;  
+	.outer-wrapper {
+		li {
+		    padding: 1rem;
+		    list-style: none;
+	    }
+        > li{
+	      display: inline-block;
+	    }
+	}
+}
+
+
+

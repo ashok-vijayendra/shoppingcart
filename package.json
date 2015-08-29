@@ -25,6 +25,7 @@
     "gulp": "^3.8.11",
     "gulp-livereload": "^3.8.0",
     "gulp-nodemon": "^2.0.2",
+    "gulp-sass": "^2.0.4",
     "nodemon": "^1.3.7",
     "reactify": "^1.1.0",
     "vinyl-buffer": "^1.0.0",
@@ -35,6 +36,7 @@
   },
   "dest": {
     "app": "bundle.js",
-    "dist": "public/scripts/react"
+    "dist": "public/scripts/react",
+    "css": "public/css"
   }
 }

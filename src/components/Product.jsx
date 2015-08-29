@@ -7,9 +7,9 @@ var Product= React.createClass({
    },
    render: function(){ 
       return (
-        <div className={"flux-product "+ (this.props.cardDetail ? "cart-detail" : "product-detail")}>
+        <div className={"product-wrapper "+ (this.props.cardDetail ? "cart-detail" : "product-detail")}>
           <img src={'/images/' + this.props.product.image}/>
-          <div className="flux-product-detail">
+          <div className="product-detail-content">
             <h1 className="name">{this.props.product.name}</h1>
             <p className="description">{this.props.product.description}</p>
             <p className="quantity">Qty: {this.props.quantity}</p> 

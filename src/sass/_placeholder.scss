@@ -1,0 +1,22 @@
+%content-container{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-bottom: 1px solid #2c3e50;
+    background: white;
+}
+
+%cart-detail-content {
+	  display: inline-block; 
+	  width: 25%;
+	  text-align: center;
+	  font-weight: bold;
+}
+
+%header-footer-content {
+    overflow: auto;
+    padding: 1rem;
+    background: #C18E99;
+    text-align: center; 
+}

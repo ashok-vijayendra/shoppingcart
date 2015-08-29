@@ -27896,9 +27896,9 @@ var Product= React.createClass({displayName: "Product",
    },
    render: function(){ 
       return (
-        React.createElement("div", {className: "flux-product "+ (this.props.cardDetail ? "cart-detail" : "product-detail")}, 
+        React.createElement("div", {className: "product-wrapper "+ (this.props.cardDetail ? "cart-detail" : "product-detail")}, 
           React.createElement("img", {src: '/images/' + this.props.product.image}), 
-          React.createElement("div", {className: "flux-product-detail"}, 
+          React.createElement("div", {className: "product-detail-content"}, 
             React.createElement("h1", {className: "name"}, this.props.product.name), 
             React.createElement("p", {className: "description"}, this.props.product.description), 
             React.createElement("p", {className: "quantity"}, "Qty: ", this.props.quantity), 

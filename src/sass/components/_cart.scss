@@ -1,0 +1,46 @@
+#flux-cart
+{
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
+    margin: auto;
+    padding: 20px;
+    position: relative; 
+}
+
+.cart-detail-heading {
+    @extend %content-container;
+}
+
+.cart-detail-footer {
+    @extend %content-container;
+}
+
+.cart-detail {
+	img {
+	    width:  25%;
+	}
+	.description {
+	  display:  none;
+	}
+	.flux-product-detail {
+	  border-right: 2px solid gray;
+	}
+	.total{
+	     @extend %cart-detail-content;
+	}	
+}
+
+.cart-detail-heading {
+    .total {
+      @extend %cart-detail-content;
+       float: right;
+     }
+}
+.cart-detail-footer {
+    .total {
+     @extend %cart-detail-content;
+     float: right;
+    }
+}

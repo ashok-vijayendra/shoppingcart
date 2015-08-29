@@ -1,0 +1,54 @@
+button
+{
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px 30px;
+    color: white;
+    border: 0;
+    border-radius: 3px;
+    outline: none;
+    background: #2ecc71;
+    box-shadow: 0 5px 0 #27ae60;
+    &:hover{
+        background: #27ae60;
+        box-shadow: 0 5px 1px #145b32;
+        cursor:  pointer;        
+    }
+    &:active{
+        border-top: 5px solid white;
+        box-shadow: none;        
+    }
+    &[disabled]{
+        background: #95a5a6;
+        box-shadow: 0 5px 0 #7f8c8d;        
+    }
+    &.view-cart
+    {
+        position: absolute;
+        top: 20px;
+        right: 55px;
+        width: auto;
+        max-width: 600px;
+        margin: 0 auto;
+        &:active{
+            border-top: 5px solid #e67e22;
+        }
+    }  
+    &.remove-item
+    {
+        background: #e74c3c;
+        box-shadow: 0 5px 1px #a82315;
+        &:hover{
+            background: #a82315;
+            box-shadow: 0 5px 1px #4d100a;
+        }        
+        &:active{
+            border-top: 5px solid white;
+            box-shadow: none;
+        }
+    }
+}
+

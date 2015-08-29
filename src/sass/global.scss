@@ -1,0 +1,19 @@
+/* BASE - Base Variable file along with starting point Mixins and Placeholders.
+========================================================================== */
+
+@import '_variables.scss';
+@import '_mixins.scss';
+@import '_placeholder.scss';
+
+/* Global - 
+========================================================================== */
+
+@import '_base.scss';
+@import '_header.scss';
+
+/* Components - 
+========================================================================== */
+
+@import 'components/_button.scss';
+@import 'components/_product.scss';
+@import 'components/_cart.scss';

@@ -4,9 +4,15 @@ var gulp = require('gulp'),
     buffer = require('vinyl-buffer'),
     reactify = require('reactify'),
     package = require('./package.json'),
-    nodemon = require('nodemon')
-    livereload = require('gulp-livereload');;
+    nodemon = require('nodemon'),
+    livereload = require('gulp-livereload'),
+    sass = require('gulp-sass');
 
+gulp.task('styles', function() {
+    gulp.src('src/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest(package.dest.css));
+});
 
 gulp.task('bundle', function() {
     return browserify(package.paths.app)
@@ -19,6 +25,7 @@ gulp.task('bundle', function() {
 
 gulp.task('watch', function () {
     gulp.watch(['src/**/*.js', 'src/**/*.jsx'],['bundle']);
+    gulp.watch(['src/**/*.scss'],['styles']);
 });
 
 gulp.task('nodemon', function () {

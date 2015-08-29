@@ -1,0 +1,31 @@
+html { 
+     font-size: 62.5%; 
+     box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html, body {
+    height: 100%; 
+}
+
+body { 
+    font-size: 1.4em; /* =14px */
+    font-family: 'Opne Sans',sans-serif;
+    background: #EEE;
+    margin: 0;
+    padding: 0;
+    color: #2c3e50; 
+} 
+
+.body-container{
+    width: 95%;
+    background: #F5F0F0;
+    margin: auto;
+    -webkit-box-shadow: 0 0 10px #aaa;
+    -moz-box-shadow: 0 0 10px #aaa;
+    box-shadow: 0 0 10px #aaa;
+}
+
