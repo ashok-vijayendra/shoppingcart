@@ -3,21 +3,30 @@
     "name": "iPhone",
     "image": "iphone.jpg",
     "description": "iPhoneis a line of smartphones designed and marketed by Apple Inc. They run Apples iOS mobile operating system. The first generation iPhone was released on June 29, 2007; the most recent iPhone models are the iPhone 6 and iPhone 6 Plus, which were unveiled at a special event on September 9, 2014.The user interface is built around the devices multi-touch screen, including a virtual keyboard.",
-    "shortdescription": "iPhoneis a line of smartphones designed and marketed by Apple Inc.",
     "price": 699
   },
   "2": {
     "name": "Samsung",
     "image": "samsung.jpg",
     "description": "iPhoneis a line of smartphones designed and marketed by Apple Inc. They run Apples iOS mobile operating system. The first generation iPhone was released on June 29, 2007; the most recent iPhone models are the iPhone 6 and iPhone 6 Plus, which were unveiled at a special event on September 9, 2014.The user interface is built around the devices multi-touch screen, including a virtual keyboard.",
-    "shortdescription": "iPhoneis a line of smartphones designed and marketed by Apple Inc.",
     "price": 499
   },
   "3": {
     "name": "HTC",
     "image": "htc.jpg",
     "description": "iPhoneis a line of smartphones designed and marketed by Apple Inc. They run Apples iOS mobile operating system. The first generation iPhone was released on June 29, 2007; the most recent iPhone models are the iPhone 6 and iPhone 6 Plus, which were unveiled at a special event on September 9, 2014.The user interface is built around the devices multi-touch screen, including a virtual keyboard.",
-    "shortdescription": "iPhoneis a line of smartphones designed and marketed by Apple Inc.",
     "price": 399
+  },
+  "4": {
+    "name": "Meizu",
+    "image": "meizu.jpg",
+    "description": "Never stop improving - 6 months after the launch of m1 Note, we unveiled the Meizu m2 note which outperforms in many aspects. The improved R-angle curve, an optimized camera and a brand-new mBack button, to name a few",
+    "price": 477     
+  },  
+  "5": {
+    "name": "Sony Xperia Z1",
+    "image": "sony.jpg",
+    "description": "The Sony Xperia Z1 is an Android KitKat-based smartphone meant for people who need a powerful device complete with rugged features. ",
+    "price": 477     
   }  
 }

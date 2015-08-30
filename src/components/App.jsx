@@ -8,7 +8,7 @@ var App = React.createClass({
 		return (
             <div className="body-container">
               <Header />
-              <RouteHandler />
+              <RouteHandler /> 
               <Footer />
             </div>
 			);
