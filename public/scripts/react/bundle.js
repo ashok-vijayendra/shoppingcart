@@ -18,7 +18,7 @@ window.onload = function(){
 
 },{"./alt":231,"./routes.jsx":239,"iso":11,"react-router":38,"react/addons":53}],2:[function(require,module,exports){
 var config = {
-    baseUrl : "http://isomorphic.com:3011"
+    baseUrl : "http://localhost:3011"
 }
 
 module.exports = config;

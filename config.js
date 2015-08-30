@@ -1,5 +1,5 @@
 var config = {
-    baseUrl : "http://isomorphic.com:3011"
+    baseUrl : "http://localhost:3011"
 }
 
 module.exports = config;
